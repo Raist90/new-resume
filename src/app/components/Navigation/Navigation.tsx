@@ -1,13 +1,17 @@
 import { Secondary } from './partials'
 
 const NavigationComponent = ({ children }: { children: React.ReactNode }) => {
-  return <div className='border grid grid-cols-2 items-center'>{children}</div>
+  return (
+    <div className='border lg:w-1/2 grid grid-cols-2 items-center mx-auto p-4'>
+      {children}
+    </div>
+  )
 }
 
 export const Primary = () => {
   return (
-    <nav className='border'>
-      <ul className='inline-flex gap-2'>
+    <nav>
+      <ul className='inline-flex gap-3'>
         <li>Home</li>
         <li>Blog</li>
         <li>Projects</li>

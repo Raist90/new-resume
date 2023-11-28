@@ -1,0 +1,17 @@
+export const expertiseLabels = [
+  'Javascript',
+  'Typescript',
+  'React',
+  'Gatsby.js',
+  'Next.js',
+  'Node.js',
+  'Sanity.io',
+  'Tailwind CSS',
+  'GraphQL',
+  'TRPC',
+  'Zod',
+  'WordPress',
+  'Vercel',
+  'Netlify',
+  '...and more',
+]

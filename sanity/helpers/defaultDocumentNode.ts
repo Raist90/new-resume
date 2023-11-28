@@ -4,7 +4,7 @@ import type { DefaultDocumentNodeResolver } from 'sanity/desk'
 import { getPreviewUrl } from '.'
 
 /** @description Add document types here that you want to have a preview pane */
-const documentsWithPreview = ['page']
+const documentsWithPreview = ['page', 'profile']
 
 export const defaultDocumentNode: DefaultDocumentNodeResolver = (
   S,

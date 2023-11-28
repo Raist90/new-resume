@@ -12,7 +12,7 @@ export const Secondary = () => {
     }
   }
   return (
-    <div className='border p-[1rem] inline-flex'>
+    <div className='inline-flex justify-end'>
       <button title='Toggle theme' onClick={handleThemeChange}>
         <span className='sr-only'>Toggle theme</span>
         {theme === 'dark' ? <Sun /> : <Moon />}

@@ -1,9 +1,13 @@
 import type { Metadata } from 'next'
-import { Space_Grotesk } from 'next/font/google'
+import { DM_Mono } from 'next/font/google'
 import './globals.css'
 import { Providers } from './Theme'
 
-const spaceGrotesk = Space_Grotesk({ subsets: ['latin'] })
+const dmMono = DM_Mono({
+  weight: '400',
+  style: 'normal',
+  subsets: ['latin'],
+})
 
 export const metadata: Metadata = {
   title: 'Manuel De Toma',
@@ -18,7 +22,9 @@ export default function RootLayout({
   return (
     <html lang='en' suppressHydrationWarning>
       <Providers>
-        <body className={spaceGrotesk.className}>{children}</body>
+        <body className={`${dmMono.className} dark:bg-neutral-900`}>
+          {children}
+        </body>
       </Providers>
     </html>
   )

@@ -20,5 +20,11 @@ export const Page = defineType({
       },
       validation: (Rule) => Rule.required(),
     }),
+    defineField({
+      name: 'profile',
+      title: 'Profile',
+      type: 'reference',
+      to: [{ type: 'profile' }],
+    }),
   ],
 })
