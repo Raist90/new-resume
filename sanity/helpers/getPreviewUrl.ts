@@ -1,3 +1,4 @@
+import { ENV } from '@/app/env'
 import type { SanityDocument } from 'sanity'
 
 const homepagePreview = ['profile']
@@ -8,6 +9,6 @@ export const getPreviewUrl = (
 ) => {
   return doc?.slug?.current === 'homepage' ||
     homepagePreview.includes(doc._type)
-    ? `${process.env.APP_URL}`
-    : `${process.env.APP_URL}/${doc.slug.current}`
+    ? `${ENV.APP_URL}`
+    : `${ENV.APP_URL}/${doc.slug.current}`
 }
