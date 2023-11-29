@@ -21,11 +21,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en' suppressHydrationWarning>
-      <Providers>
-        <body className={`${dmMono.className} dark:bg-neutral-900`}>
-          {children}
-        </body>
-      </Providers>
+      <body className={`${dmMono.className} dark:bg-neutral-900`}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   )
 }

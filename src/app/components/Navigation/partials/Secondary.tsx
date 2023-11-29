@@ -4,6 +4,7 @@ import { useTheme } from 'next-themes'
 
 export const Secondary = () => {
   const { theme, setTheme } = useTheme()
+
   const handleThemeChange = () => {
     if (theme === 'dark') {
       setTheme('light')
@@ -11,6 +12,7 @@ export const Secondary = () => {
       setTheme('dark')
     }
   }
+
   return (
     <div className='inline-flex justify-end'>
       <button title='Toggle theme' onClick={handleThemeChange}>
