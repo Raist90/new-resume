@@ -1,9 +1,9 @@
 import { visionTool } from '@sanity/vision'
 import { defineConfig } from 'sanity'
-import { deskTool } from 'sanity/desk'
-import { apiVersion, dataset, projectId } from './sanity/env'
-import { schema } from './sanity/schema'
-import { defaultDocumentNode } from './sanity/helpers'
+import { structureTool } from 'sanity/structure'
+import { apiVersion, dataset, projectId } from './env'
+import { schema } from './schema'
+import { defaultDocumentNode } from './helpers'
 
 export default defineConfig({
   basePath: '/studio',
@@ -11,7 +11,7 @@ export default defineConfig({
   dataset,
   schema,
   plugins: [
-    deskTool({
+    structureTool({
       defaultDocumentNode,
     }),
     visionTool({ defaultApiVersion: apiVersion }),

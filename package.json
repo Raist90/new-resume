@@ -16,7 +16,6 @@
     "lucide-react": "^0.293.0",
     "next": "14.0.3",
     "next-sanity": "^5.5.10",
-    "next-themes": "^0.2.1",
     "react": "^18",
     "react-dom": "^18",
     "sanity": "^3.20.1",

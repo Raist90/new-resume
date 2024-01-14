@@ -1,8 +1,7 @@
 import Image from 'next/image'
-import { ComponentType } from 'react'
 import { MediaProps } from './MediaProps'
 
-export const Media: ComponentType<MediaProps> = ({ image, options }) => {
+export const Media = ({ image, options }: MediaProps) => {
   const { alt, src } = image
   return (
     <Image

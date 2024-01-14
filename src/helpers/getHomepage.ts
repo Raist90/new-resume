@@ -1,7 +1,6 @@
-/** @todo Fix this ugly import */
-import { client } from '../../../sanity/lib/client'
-import { homepageQuery } from '../api/sanity'
-import { HomepageProps, homepageSchema } from '@/app/types'
+import { client } from '@/sanity/lib/client'
+import { homepageQuery } from '@/api/sanity'
+import { HomepageProps, homepageSchema } from '@/types'
 
 export const getHomepage = async () => {
   const sanityClient = client

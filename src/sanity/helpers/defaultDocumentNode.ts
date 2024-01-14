@@ -1,6 +1,6 @@
 import type { SanityDocument } from 'sanity'
 import Iframe from 'sanity-plugin-iframe-pane'
-import type { DefaultDocumentNodeResolver } from 'sanity/desk'
+import type { DefaultDocumentNodeResolver } from 'sanity/structure'
 import { getPreviewUrl } from '.'
 
 /** @description Add document types here that you want to have a preview pane */

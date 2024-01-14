@@ -1,4 +1,4 @@
-import { Navigation } from '../components'
+import { Navigation } from '@/components'
 export default function MainLayout({
   children,
 }: {

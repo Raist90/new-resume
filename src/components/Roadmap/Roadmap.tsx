@@ -1,10 +1,9 @@
-import type { HomepageProps } from '@/app/types'
+import type { HomepageProps } from '@/types'
 import { PortableText } from '@portabletext/react'
-import type { ComponentType } from 'react'
 
 type RoadmapProps = Pick<HomepageProps, 'workExperience'>
 
-export const Roadmap: ComponentType<RoadmapProps> = ({ workExperience }) => {
+export const Roadmap = ({ workExperience }: RoadmapProps) => {
   const { title, companies } = workExperience
   return (
     <section className='grid'>

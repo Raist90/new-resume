@@ -1,4 +1,4 @@
-import { ENV } from '@/app/env'
+import { ENV } from '@/env'
 import type { SanityDocument } from 'sanity'
 
 const homepagePreview = ['profile']

@@ -1,4 +1,4 @@
-import { ENV } from '@/app/env'
+import { ENV } from '@/env'
 
 export const apiVersion = ENV.NEXT_PUBLIC_SANITY_API_VERSION
 
