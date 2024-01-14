@@ -8,6 +8,7 @@ const NavigationComponent = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
+/** @todo Add links and `tabIndex` */
 export const Primary = () => {
   return (
     <nav>

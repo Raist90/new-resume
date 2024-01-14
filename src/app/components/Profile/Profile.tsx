@@ -9,7 +9,7 @@ type ProfileProps = Pick<HomepageProps, 'profile'>
 export const Profile: ComponentType<ProfileProps> = ({ profile }) => {
   const { name, motto, picture, role, bio } = profile
   return (
-    <>
+    <section>
       <article className='grid md:grid-cols-12 gap-9 items-start'>
         <div className='md:col-span-5 relative h-[400px] lg:h-[700px]'>
           <Media image={picture} options={`rounded-lg object-top`} />
@@ -22,6 +22,7 @@ export const Profile: ComponentType<ProfileProps> = ({ profile }) => {
             <p>{motto}</p>
             <PortableText value={bio} />
           </div>
+
           <div>
             <h4 className='text-2xl'>Expertise</h4>
             <div>
@@ -36,6 +37,6 @@ export const Profile: ComponentType<ProfileProps> = ({ profile }) => {
           </div>
         </div>
       </article>
-    </>
+    </section>
   )
 }

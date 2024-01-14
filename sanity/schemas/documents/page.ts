@@ -26,5 +26,11 @@ export const Page = defineType({
       type: 'reference',
       to: [{ type: 'profile' }],
     }),
+    defineField({
+      name: 'workExperience',
+      title: 'Work Experience',
+      type: 'reference',
+      to: [{ type: 'workExperience' }],
+    }),
   ],
 })

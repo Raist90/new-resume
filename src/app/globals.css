@@ -6,6 +6,10 @@
   border-color: rebeccapurple;
 }
 
+section {
+  margin-block: 25px;
+}
+
 h2,
 h3,
 h4 {
