@@ -9,12 +9,12 @@ export const Profile = ({ profile }: ProfileProps) => {
   const { name, motto, picture, role, bio } = profile
   return (
     <section>
-      <article className='grid md:grid-cols-12 gap-9 items-start'>
-        <div className='md:col-span-5 relative h-[400px] lg:h-[700px]'>
+      <article className='grid md:grid-cols-12 gap-9'>
+        <div className='md:col-span-4 relative aspect-[4/5]'>
           <Media image={picture} options={`rounded-lg`} />
         </div>
 
-        <div className='md:col-span-7 grid gap-3'>
+        <div className='md:col-span-8 grid gap-3 md:sticky md:place-self-start md:top-12'>
           <div>
             <h2 className='text-3xl'>{name}</h2>
             <h3 className='text-2xl'>{role}</h3>

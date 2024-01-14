@@ -1,3 +1,5 @@
+const withMDX = require('@next/mdx')()
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   env: {
@@ -8,6 +10,7 @@ const nextConfig = {
   images: {
     domains: ['cdn.sanity.io'],
   },
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
 }
 
-module.exports = nextConfig
+module.exports = withMDX(nextConfig)

@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Secondary } from './partials'
 
 const NavigationComponent = ({ children }: { children: React.ReactNode }) => {
@@ -13,8 +14,12 @@ export const Primary = () => {
   return (
     <nav>
       <ul className='inline-flex gap-3'>
-        <li>Home</li>
-        <li>Blog</li>
+        <li>
+          <Link href='/'>Home</Link>
+        </li>
+        <li>
+          <Link href='/posts/first-post'>Blog</Link>
+        </li>
         <li>Projects</li>
         <li>About</li>
       </ul>

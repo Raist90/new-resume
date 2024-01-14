@@ -8,6 +8,7 @@ export const expertiseLabels = [
   'Sanity.io',
   'Tailwind CSS',
   'GraphQL',
+  'React Query',
   'TRPC',
   'Zod',
   'WordPress',
