@@ -1,5 +1,7 @@
 export * from './Media'
 export * from './Navigation'
+export * from './PostCard'
+export * from './PostWrapper'
 export * from './Profile'
 export * from './Roadmap'
 export * from './ThemeSwitcher'

@@ -18,7 +18,7 @@ export const Primary = () => {
           <Link href='/'>Home</Link>
         </li>
         <li>
-          <Link href='/posts/first-post'>Blog</Link>
+          <Link href='/posts'>Posts</Link>
         </li>
         <li>Projects</li>
         <li>About</li>
