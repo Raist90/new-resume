@@ -1,4 +1,4 @@
-import { Media } from '../Media'
+import { Media } from '..'
 import { PortableText } from '@portabletext/react'
 import type { HomepageProps } from '@/types'
 import { expertiseLabels } from '@/constants'

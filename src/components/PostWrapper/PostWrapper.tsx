@@ -1,4 +1,4 @@
-import { Media } from '..'
+import { Media, TagList } from '..'
 
 type PostWrapperProps = {
   children: React.ReactNode
@@ -26,15 +26,9 @@ export const PostWrapper = ({
       <div>
         <h2 className='text-3xl'>{title}</h2>
         <p>{excerpt}</p>
-        <p className='text-sm'>Published on {date}</p>
+        <span className='text-sm block mb-1'>Published on {date}</span>
 
-        <div className='inline-flex gap-2'>
-          {tags.map((tag, index) => (
-            <em key={index + 2} className='text-sm'>
-              #{tag}
-            </em>
-          ))}
-        </div>
+        <TagList tags={tags} />
 
         <div className='aspect-[16/9] relative my-2'>
           <Media image={cover} />

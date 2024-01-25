@@ -1,12 +1,6 @@
 import type { Metadata } from 'next'
-import { DM_Mono } from 'next/font/google'
 import './globals.css'
-
-const dmMono = DM_Mono({
-  weight: '400',
-  style: 'normal',
-  subsets: ['latin'],
-})
+import { dmMono, dmSans } from '@/fonts'
 
 export const metadata: Metadata = {
   title: 'Manuel De Toma',
@@ -20,9 +14,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang='en'>
+    <html lang='en' className='md:text-lg'>
       <body
-        className={`${dmMono.className} dark:bg-neutral-900 dark:text-white`}
+        className={`${dmMono.variable} ${dmSans.variable} dark:bg-neutral-800 dark:text-gray-100`}
       >
         {children}
       </body>

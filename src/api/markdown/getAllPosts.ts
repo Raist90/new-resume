@@ -1,8 +1,8 @@
 import path from 'path'
-import { serialize } from 'next-mdx-remote/serialize'
 import type { Post } from '@/types'
 import { postsFormatter } from './formatters'
 import { readFileSync, readdirSync } from 'fs'
+import { compileMDX } from 'next-mdx-remote/rsc'
 
 export const getAllPosts = async () => {
   const postsPath = path.join(process.cwd(), 'src/posts')
@@ -16,9 +16,15 @@ export const getAllPosts = async () => {
       path.join(postsPath, file, file + '.mdx'),
       'utf8',
     )
-    const mdxSource = await serialize(source, { parseFrontmatter: true })
 
-    allPosts.push(postsFormatter(mdxSource.frontmatter))
+    const { frontmatter } = await compileMDX({
+      source,
+      options: {
+        parseFrontmatter: true,
+      },
+    })
+
+    allPosts.push(postsFormatter(frontmatter))
   }
   return allPosts
 }

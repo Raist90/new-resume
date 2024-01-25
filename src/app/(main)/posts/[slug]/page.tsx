@@ -30,7 +30,9 @@ const PostPage = async ({ params }: { params: { slug: string } }) => {
 
   const { content, frontmatter } = await compileMDX({
     source,
-    options: { parseFrontmatter: true },
+    options: {
+      parseFrontmatter: true,
+    },
     components: components,
   })
 

@@ -1,6 +1,6 @@
 import type { Post } from '@/types'
 import Link from 'next/link'
-import { Media } from '..'
+import { Media, TagList } from '..'
 
 type PostCardProps = {
   post: Post
@@ -8,22 +8,18 @@ type PostCardProps = {
 
 export const PostCard = ({ post }: PostCardProps) => {
   return (
-    <Link href={`posts/${post.slug}`} key={post.title}>
-      <article>
-        <div className='aspect-[16/9] relative my-2'>
+    <article key={post.title}>
+      <Link href={`posts/${post.slug}`}>
+        <div className='aspect-[16/9] relative my-4'>
           <Media image={post.cover} />
         </div>
+      </Link>
 
-        <h2 className='text-2xl'>{post.title}</h2>
-        <span className='text-sm block mb-2'>Published on {post.date}</span>
-        <p>{post.excerpt}</p>
+      <h2 className='text-2xl'>{post.title}</h2>
+      <span className='text-sm block mb-1'>Published on {post.date}</span>
+      <p>{post.excerpt}</p>
 
-        <div className='inline-flex gap-2 text-sm'>
-          {post.tags.map((tag) => (
-            <span key={tag}>#{tag}</span>
-          ))}
-        </div>
-      </article>
-    </Link>
+      <TagList tags={post.tags} />
+    </article>
   )
 }

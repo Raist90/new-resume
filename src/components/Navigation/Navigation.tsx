@@ -1,9 +1,12 @@
 import Link from 'next/link'
 import { Secondary } from './partials'
+import { dmMono } from '@/fonts'
 
 const NavigationComponent = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className='border lg:w-1/2 grid grid-cols-2 items-center mx-auto p-4'>
+    <div
+      className={`${dmMono.className} border lg:w-1/2 grid grid-cols-2 items-center mx-auto p-4`}
+    >
       {children}
     </div>
   )
