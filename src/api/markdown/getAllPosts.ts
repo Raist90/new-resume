@@ -1,5 +1,5 @@
 import path from 'path'
-import type { Post } from '@/types'
+import type { Frontmatter, Post } from '@/types'
 import { postsFormatter } from './formatters'
 import { readFileSync, readdirSync } from 'fs'
 import { compileMDX } from 'next-mdx-remote/rsc'
@@ -17,7 +17,7 @@ export const getAllPosts = async () => {
       'utf8',
     )
 
-    const { frontmatter } = await compileMDX({
+    const { frontmatter }: { frontmatter: Frontmatter } = await compileMDX({
       source,
       options: {
         parseFrontmatter: true,
@@ -26,5 +26,5 @@ export const getAllPosts = async () => {
 
     allPosts.push(postsFormatter(frontmatter))
   }
-  return allPosts
+  return allPosts.sort((a, b) => b.date.localeCompare(a.date))
 }

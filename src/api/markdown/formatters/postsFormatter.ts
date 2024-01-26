@@ -1,20 +1,20 @@
-import type { Post } from '@/types'
+import type { Frontmatter, Post } from '@/types'
 
 const createSlugByTitle = (title: string) => {
   return title.toLowerCase().replace(/\s/g, '-')
 }
 
-/** @todo Type this better */
-export const postsFormatter = (frontmatter: any): Post => {
+export const postsFormatter = (frontmatter: Frontmatter): Post => {
+  const { title, date, cover, tags, excerpt } = frontmatter
   return {
-    title: frontmatter.title,
-    date: frontmatter.date,
+    title,
+    date,
     cover: {
-      alt: frontmatter.title,
-      src: frontmatter.cover,
+      alt: title,
+      src: cover,
     },
-    tags: [...frontmatter.tags.split(', ')],
-    excerpt: frontmatter.excerpt,
-    slug: createSlugByTitle(frontmatter.title),
+    tags: [...tags.split(', ')],
+    excerpt,
+    slug: createSlugByTitle(title),
   }
 }

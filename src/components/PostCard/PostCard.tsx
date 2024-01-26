@@ -15,11 +15,10 @@ export const PostCard = ({ post }: PostCardProps) => {
         </div>
       </Link>
 
+      <TagList tags={post.tags} />
       <h2 className='text-2xl'>{post.title}</h2>
       <span className='text-sm block mb-1'>Published on {post.date}</span>
       <p>{post.excerpt}</p>
-
-      <TagList tags={post.tags} />
     </article>
   )
 }

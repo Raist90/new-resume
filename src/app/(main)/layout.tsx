@@ -5,10 +5,9 @@ export default function MainLayout({
   children: React.ReactNode
 }) {
   return (
-    <main className='grid gap-6 p-4'>
+    <main className='grid p-4'>
       <Navigation>
         <Navigation.Primary />
-        <Navigation.Secondary />
       </Navigation>
       {children}
     </main>

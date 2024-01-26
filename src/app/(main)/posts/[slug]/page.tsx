@@ -4,6 +4,8 @@ import { compileMDX } from 'next-mdx-remote/rsc'
 import { PostWrapper } from '@/components'
 import { getAllPosts, postsFormatter } from '@/api'
 import type { MDXComponents } from 'mdx/types'
+import { JSXElementConstructor, ReactElement } from 'react'
+import { Frontmatter } from '@/types'
 
 export const generateStaticParams = async () => {
   const posts = await getAllPosts()
@@ -25,10 +27,17 @@ const PostPage = async ({ params }: { params: { slug: string } }) => {
 
   /** @todo Move this into another file */
   const components: MDXComponents = {
-    h3: ({ children }) => <h3 className='text-2xl'>{children}</h3>,
+    h3: ({ children }) => (
+      <h3 className='text-xl uppercase font-bold mt-4'>{children}</h3>
+    ),
   }
 
-  const { content, frontmatter } = await compileMDX({
+  type CompiledMDX = {
+    content: ReactElement<any, string | JSXElementConstructor<any>>
+    frontmatter: Frontmatter
+  }
+
+  const { content, frontmatter }: CompiledMDX = await compileMDX({
     source,
     options: {
       parseFrontmatter: true,

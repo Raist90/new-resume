@@ -1,9 +1,4 @@
-import { ThemeSwitcher } from '@/components'
-
+/** @todo Figure out if it's best to get rid of this */
 export const Secondary = () => {
-  return (
-    <div className='inline-flex justify-end'>
-      <ThemeSwitcher />
-    </div>
-  )
+  return null
 }
