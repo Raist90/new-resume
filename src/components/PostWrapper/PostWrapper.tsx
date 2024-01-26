@@ -22,7 +22,7 @@ export const PostWrapper = ({
   excerpt,
 }: PostWrapperProps) => {
   return (
-    <section className='border w-11/12 md:w-10/12 lg:w-1/2 mx-auto p-4 grid gap-4'>
+    <section className='border w-full md:w-10/12 lg:w-1/2 mx-auto p-4 grid gap-4'>
       <div>
         <h2 className='text-3xl'>{title}</h2>
         <p>{excerpt}</p>

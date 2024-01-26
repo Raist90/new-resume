@@ -9,7 +9,7 @@ type PostCardProps = {
 export const PostCard = ({ post }: PostCardProps) => {
   return (
     <article key={post.title}>
-      <Link href={`posts/${post.slug}`}>
+      <Link href={`/posts/${post.slug}`}>
         <div className='aspect-[16/9] relative my-4'>
           <Media image={post.cover} />
         </div>
