@@ -7,7 +7,7 @@ export const Roadmap = ({ workExperience }: RoadmapProps) => {
   const { title, companies } = workExperience
   return (
     <section className='grid'>
-      <div className='flex lg:w-10/12 flex-col mx-auto'>
+      <div className='flex flex-col'>
         <h2 className='text-3xl'>{title}</h2>
         <article className='grid gap-6'>
           {companies.map(
