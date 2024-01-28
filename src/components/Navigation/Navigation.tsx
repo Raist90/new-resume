@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { dmMono } from '@/fonts'
 import { ThemeSwitcher } from '..'
+import { getNavigation } from '@/helpers/getNavigation'
 
 const NavigationComponent = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -10,18 +11,21 @@ const NavigationComponent = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-/** @todo Add links and `tabIndex` */
-export const Primary = () => {
+export const Primary = async () => {
+  /** @todo Should I fetch this on `Layout` instead? */
+  const { primary } = await getNavigation()
+
   return (
     <ul className='inline-flex gap-x-3 items-center justify-self-end w-max'>
-      <li>
-        <Link href='/'>Home</Link>
-      </li>
-      <li>
-        <Link href='/posts'>Posts</Link>
-      </li>
-      <li>Projects</li>
-      <li>About</li>
+      {primary.map((item) => {
+        const isHomepage = item.url === '/homepage'
+
+        return (
+          <li key={item.id}>
+            <Link href={isHomepage ? '/' : item.url}>{item.label}</Link>
+          </li>
+        )
+      })}
       <ThemeSwitcher />
     </ul>
   )

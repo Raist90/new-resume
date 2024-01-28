@@ -1,6 +1,6 @@
 import { client } from '@/sanity/lib/client'
 import { homepageQuery } from '@/api/sanity'
-import { HomepageProps, homepageSchema } from '@/types'
+import { type HomepageProps, homepageSchema } from '@/types'
 
 export const getHomepage = async () => {
   const sanityClient = client

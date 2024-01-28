@@ -1,5 +1,6 @@
 import { defineField, defineType } from 'sanity'
 import { companyFields } from '../partials/companyFields'
+import { Briefcase } from 'lucide-react'
 
 const fields = [
   defineField({
@@ -20,5 +21,6 @@ export const workExperience = defineType({
   name: 'workExperience',
   title: 'Work Experience',
   type: 'document',
+  icon: Briefcase,
   fields,
 })

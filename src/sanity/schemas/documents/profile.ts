@@ -1,3 +1,4 @@
+import { User } from 'lucide-react'
 import { defineField, defineType } from 'sanity'
 
 const fields = [
@@ -45,4 +46,5 @@ export const profile = defineType({
   title: 'Profile',
   type: 'document',
   fields,
+  icon: User,
 })
