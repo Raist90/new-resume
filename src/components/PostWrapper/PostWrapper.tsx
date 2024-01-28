@@ -22,7 +22,7 @@ export const PostWrapper = ({
   excerpt,
 }: PostWrapperProps) => {
   return (
-    <section className='w-full md:w-10/12 lg:w-1/2 mx-auto p-4 grid gap-4'>
+    <section className='w-full md:w-10/12 lg:w-1/2 mx-auto grid gap-4'>
       <div>
         <TagList tags={tags} />
 
