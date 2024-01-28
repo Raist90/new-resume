@@ -16,7 +16,9 @@ export const PostCard = ({ post }: PostCardProps) => {
       </Link>
 
       <TagList tags={post.tags} />
-      <h2 className='text-2xl'>{post.title}</h2>
+      <Link href={`/posts/${post.slug}`}>
+        <h2 className='text-2xl'>{post.title}</h2>
+      </Link>
       <span className='text-sm block mb-1'>Published on {post.date}</span>
       <p>{post.excerpt}</p>
     </article>

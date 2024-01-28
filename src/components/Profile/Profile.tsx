@@ -9,14 +9,14 @@ export const Profile = ({ profile }: ProfileProps) => {
   const { name, motto, picture, role, bio } = profile
   return (
     <section className='grid gap-8'>
-      <div className='grid lg:grid-cols-2 gap-4'>
+      <div className='grid lg:grid-cols-2 gap-4 text-balance'>
         <div>
           <h2 className='text-3xl'>{name}</h2>
           <h3 className='text-2xl'>{role}</h3>
           <p>{motto}</p>
         </div>
 
-        <div className='relative aspect-square h-[200px] place-self-center lg:place-self-start'>
+        <div className='relative aspect-square h-[200px]'>
           <Media image={picture} options={`rounded-full`} />
         </div>
       </div>
