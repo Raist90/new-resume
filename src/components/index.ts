@@ -1,3 +1,4 @@
+export * from './LatestPosts'
 export * from './Media'
 export * from './Navigation'
 export * from './PostCard'

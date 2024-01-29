@@ -23,8 +23,8 @@ Yes and not. I like that React **server components** are able to fetch data from
 
 This means that if you're not a *solo*-developer you and your team need to adopt a really robust approach or things can become messy pretty fast and you will have a hard time figuring out where the data is coming from.
 
-Another thing that I like is the better separation between server and client side. By default all components runs on the server and if you want to perform some client operation you write *'use client'* on top of the file and this feels way more declarative. Debugger is also pretty good and able to spot if you're mixing server and client code and it's easier to avoid nasty *hydrations errors*.
+Another thing that I like is the better separation between server and client side. By default all components runs on the server and if you want to perform some client operation you write *'use client'* on top of the file and this feels way more declarative. Debugger is also pretty good and able to detect if you're mixing server and client code and it's easier to avoid nasty *hydrations errors*.
 
-I'm a little bit confused when it comes to the new *Layout* instead. I mean, since we have server components what prevents me to define and use my custom layout components instead? I think this is a legit question because of some limitations the built-in Layout comes with.
+The new Layout instead could be a little bit confusing at first, especially for beginners. The main idea is that you can have a *base* Layout that wraps the entire app and then you can overwrite it when needed for specific routes.
 
-But yeah, it's been a good overall experience until now and working with it feels pretty fun.
+But yeah, overall it's been a good experience until now and working with it feels pretty fun.

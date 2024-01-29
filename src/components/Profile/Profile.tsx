@@ -17,7 +17,7 @@ export const Profile = ({ profile }: ProfileProps) => {
         </div>
 
         <div className='relative aspect-square h-[200px]'>
-          <Media image={picture} options={`rounded-full`} />
+          <Media image={picture} options={'rounded-full'} />
         </div>
       </div>
 
