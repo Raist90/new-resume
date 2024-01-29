@@ -4,7 +4,6 @@ import { Moon, Sun } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
 export const ThemeSwitcher = () => {
-  /** @todo Would be best to make this a function in order to load the prefered theme from the OS and pass it to the initial state */
   const storedTheme = useTheme()
 
   const [mounted, setMounted] = useState(false)
