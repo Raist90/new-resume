@@ -1,13 +1,15 @@
 import { Navigation } from '@/components'
-export default function MainLayout({
+import { getNavigation } from '@/helpers/getNavigation'
+export default async function MainLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const { primary } = await getNavigation()
   return (
     <main className='grid p-8'>
       <Navigation>
-        <Navigation.Primary />
+        <Navigation.Primary primary={primary} />
       </Navigation>
       {children}
     </main>
