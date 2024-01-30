@@ -31,6 +31,7 @@ const fields = [
   }),
 ]
 
+/** @todo Not sure why this const is capitalized, double check it */
 export const Page = defineType({
   name: 'page',
   title: 'Page',

@@ -1,4 +1,5 @@
 export * from './navigation'
 export * from './page'
 export * from './profile'
+export * from './projectPage'
 export * from './workExperience'
