@@ -1,5 +1,6 @@
 import z from 'zod'
 
+/** @todo Refactor */
 const blockTextSchema = z.object({
   name: z.literal('Text').optional(),
   text: z.array(
