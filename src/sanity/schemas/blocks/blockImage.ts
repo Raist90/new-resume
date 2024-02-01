@@ -1,5 +1,5 @@
 import { FileImage } from 'lucide-react'
-import { defineField } from 'sanity'
+import { defineField, defineType } from 'sanity'
 
 const fields = [
   defineField({
@@ -16,7 +16,7 @@ const fields = [
   }),
 ]
 
-export const blockImage = defineField({
+export const blockImage = defineType({
   name: 'blockImage',
   title: 'Block Image',
   type: 'object',

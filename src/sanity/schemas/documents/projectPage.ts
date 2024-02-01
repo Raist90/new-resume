@@ -2,7 +2,11 @@ import { defineField, defineType } from 'sanity'
 import * as blocks from '../blocks'
 import { Presentation } from 'lucide-react'
 
-const allBlocks = Object.values(blocks)
+const allBlocks = Object.values(blocks).map((block) => {
+  return {
+    type: block.name,
+  }
+})
 
 const fields = [
   defineField({

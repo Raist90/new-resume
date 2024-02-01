@@ -1,5 +1,5 @@
 import { CaseSensitive } from 'lucide-react'
-import { defineField } from 'sanity'
+import { defineField, defineType } from 'sanity'
 
 const fields = [
   defineField({
@@ -10,7 +10,7 @@ const fields = [
   }),
 ]
 
-export const blockText = defineField({
+export const blockText = defineType({
   name: 'blockText',
   title: 'Block Text',
   type: 'object',
