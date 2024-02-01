@@ -14,11 +14,11 @@ const ProjectPage = async ({ params }: { params: { slug: string } }) => {
   const { slug } = params
   const data = await getProjectPage(slug)
   const page = projectPageSchema.parse(data)
-  const { blocks } = page
+  const { title, blocks } = page
 
   return (
-    <section>
-      <div>Project Page</div>
+    <section className='lg:w-1/2 mx-auto'>
+      <h2 className='text-2xl'>{title}</h2>
 
       {blockRenderer(blocks, blockComponents)}
     </section>

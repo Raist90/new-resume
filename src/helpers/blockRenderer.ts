@@ -1,15 +1,16 @@
-import { BlockText } from '@/types'
+import { BlockImage, BlockText } from '@/types'
 import { type ComponentType, createElement } from 'react'
 
 /** @todo Make sure to properly type this when you add `types/blocks` */
 type Block = {
-  name: 'Text'
-  data: BlockText
+  name: 'Text' | 'Image'
+  data: BlockText | BlockImage
 }
 
 /** @todo Make sure to properly type this when you add `types/blocks` */
 type Modules = {
   Text: ComponentType<any>
+  Image: ComponentType<any>
 }
 
 export const blockRenderer = (blocks: Block[], modules: Modules) => {
