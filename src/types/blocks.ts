@@ -36,3 +36,8 @@ export const blockTextImageSchema = z.object({
 export type BlockImage = z.infer<typeof blockImageSchema>
 export type BlockText = z.infer<typeof blockTextSchema>
 export type BlockTextImage = z.infer<typeof blockTextImageSchema>
+
+export type Block = {
+  name: 'Text' | 'Image' | 'TextImage'
+  data: BlockText | BlockImage | BlockTextImage
+}
