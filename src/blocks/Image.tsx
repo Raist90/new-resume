@@ -1,12 +1,13 @@
 import { Media } from '@/components'
 import { BlockImage } from '@/types'
 
-export const Image = ({ image }: BlockImage) => {
+export const Image = ({ image, ratio }: BlockImage & { ratio?: string }) => {
+  /** @description This prop is coming from the `TextImage` block and not from the CMS */
+  const aspectRatio = ratio ? `aspect-[${ratio}]` : `aspect-[16/9]`
+
   return (
-    <section>
-      <div className='aspect-[16/9] relative'>
-        <Media image={image} />
-      </div>
-    </section>
+    <div className={`${aspectRatio} relative`}>
+      <Media image={image} />
+    </div>
   )
 }

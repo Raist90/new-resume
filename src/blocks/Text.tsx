@@ -1,10 +1,10 @@
 import type { BlockText } from '@/types'
 import { PortableText } from '@portabletext/react'
 
-export const Text = ({ text }: BlockText) => {
+export const Text = ({ text, ...rest }: BlockText) => {
   return (
-    <section>
+    <div {...rest}>
       <PortableText value={text} />
-    </section>
+    </div>
   )
 }

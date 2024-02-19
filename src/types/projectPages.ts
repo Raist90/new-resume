@@ -1,5 +1,5 @@
 import z from 'zod'
-import { blockImageSchema, blockTextSchema } from '.'
+import { blockImageSchema, blockTextImageSchema, blockTextSchema } from '.'
 
 export const projectPageSchema = z.object({
   title: z.string(),
@@ -12,6 +12,10 @@ export const projectPageSchema = z.object({
       z.object({
         name: z.literal('Image'),
         data: blockImageSchema,
+      }),
+      z.object({
+        name: z.literal('TextImage'),
+        data: blockTextImageSchema,
       }),
     ]),
   ),
