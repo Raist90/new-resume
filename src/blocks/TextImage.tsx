@@ -1,22 +1,24 @@
 import type { BlockTextImage } from '@/types'
 import { Image as ImageBlock, Text as TextBlock } from '.'
+import { randomUUID } from 'crypto'
+const imageBlockId = randomUUID()
+const textBlockId = randomUUID()
 
 const getBlocks = <T extends JSX.Element>(leftBlock: T, rightBlock: T) => {
   return (
     <>
-      {leftBlock}
-      {rightBlock}
+      <div className='md:col-span-4'>{leftBlock}</div>
+      <div className='md:col-span-8 md:sticky md:place-self-end md:bottom-12'>
+        {rightBlock}
+      </div>
     </>
   )
 }
 
 export const TextImage = ({ image, text, imagePosition }: BlockTextImage) => {
-  const imageBlock = <ImageBlock image={image} ratio='1/1' />
+  const imageBlock = <ImageBlock blockKey={imageBlockId} image={image} />
   const textBlock = (
-    <TextBlock
-      className='md:sticky md:place-self-end md:bottom-12'
-      text={text}
-    />
+    <TextBlock blockKey={textBlockId} className='m-0' text={text} />
   )
 
   const directionMap = {
@@ -25,8 +27,8 @@ export const TextImage = ({ image, text, imagePosition }: BlockTextImage) => {
   }
 
   return (
-    <section className='grid grid-cols-2 gap-4 min-h-[400px] absolute w-8/12 left-[50%] translate-x-[-50%]'>
+    <div className='grid md:grid-cols-12 gap-4 md:ml-[-100px]'>
       {directionMap[imagePosition]}
-    </section>
+    </div>
   )
 }

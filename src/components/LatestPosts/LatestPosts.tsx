@@ -4,7 +4,7 @@ import type { Post } from '@/types'
 
 type LatestPostsProps = {
   posts: Omit<Post, 'date' | 'tags'>[]
-  className: string
+  className?: string
 }
 
 /** @todo Find a way to generate an `id` for each post */

@@ -3,7 +3,7 @@ const linkQuery = `
   label,
   'url': select(
     linkType == 'internal' => '/' + internalLink->slug.current,
-    '/' + externalLink
+    externalLink.current
   )
 `
 

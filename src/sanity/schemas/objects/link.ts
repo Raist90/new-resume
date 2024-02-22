@@ -1,4 +1,4 @@
-import { defineField, defineType } from 'sanity'
+import { defineField, defineType, isArray, isString } from 'sanity'
 import { linkValidation, referenceValidation } from '../validationRules'
 import { Link } from 'lucide-react'
 
@@ -32,7 +32,18 @@ const fields = [
   defineField({
     name: 'externalLink',
     title: 'External Link',
-    type: 'string',
+    type: 'slug',
+    options: {
+      source: (_, object) => {
+        const { parent } = object
+        if (!isArray(parent) && 'label' in parent && isString(parent.label)) {
+          return parent.label
+        }
+        return ''
+      },
+      slugify: (input: string) => `/${input.toLowerCase()}`,
+      /** @todo Make sure to add an `isUnique` validation rule function */
+    },
     hidden: ({ parent }) => parent.linkType !== 'external',
     validation: linkValidation,
   }),
@@ -48,23 +59,34 @@ export const link = defineType({
     select: {
       label: 'label',
       linkType: 'linkType',
-      externalLink: 'externalLink',
+      externalLink: 'externalLink.current',
     },
     prepare({
       label,
       linkType,
       externalLink,
-    }: {
-      [key: string]: string | undefined
-    }) {
-      const urlify = (str: string) => `/${str.toLowerCase()}`
-      const url =
-        linkType === 'internal' ? label ?? 'no url' : externalLink ?? 'no url'
-      const previewUrl = url !== 'no url' ? urlify(url) : url
+    }: Record<string, string | undefined>) {
+      const urlify = (str: string) => {
+        if (str) return `/${str.toLowerCase()}`
+      }
+
+      const getUrl = (): string | undefined => {
+        if (!linkType) return 'no url'
+        if (isString(linkType) && linkType === 'internal' && isString(label)) {
+          return urlify(label)
+        } else if (
+          isString(linkType) &&
+          linkType === 'external' &&
+          externalLink &&
+          isString(externalLink)
+        ) {
+          return externalLink
+        }
+      }
 
       return {
         title: label || 'No label',
-        subtitle: `Type: ${linkType}, URL: ${previewUrl}`,
+        subtitle: `Type: ${linkType}, URL: ${getUrl()}`,
       }
     },
   },

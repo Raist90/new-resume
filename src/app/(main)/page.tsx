@@ -12,7 +12,7 @@ const Homepage = async () => {
     <>
       <div className='md:w-10/12 lg:w-1/2 mx-auto grid gap-2'>
         <Profile profile={profile} />
-        <LatestPosts className='' posts={latestPosts} />
+        <LatestPosts posts={latestPosts} />
         <Roadmap workExperience={workExperience} />
       </div>
     </>

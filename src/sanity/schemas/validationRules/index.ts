@@ -1,4 +1,4 @@
-import { type ReferenceRule, type StringRule } from 'sanity'
+import type { ReferenceRule, SlugRule } from 'sanity'
 
 export const referenceValidation = (Rule: ReferenceRule) =>
   Rule.custom((value, context) => {
@@ -18,7 +18,7 @@ export const referenceValidation = (Rule: ReferenceRule) =>
     return true
   })
 
-export const linkValidation = (Rule: StringRule) =>
+export const linkValidation = (Rule: SlugRule) =>
   Rule.custom((value, context) => {
     const { parent } = context
 

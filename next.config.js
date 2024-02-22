@@ -8,7 +8,11 @@ const nextConfig = {
     NEXT_PUBLIC_SANITY_DATASET: process.env.NEXT_PUBLIC_SANITY_DATASET,
   },
   images: {
-    domains: ['cdn.sanity.io'],
+    remotePatterns: [
+      {
+        hostname: 'cdn.sanity.io',
+      },
+    ],
   },
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
 }
