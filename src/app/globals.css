@@ -5,14 +5,18 @@
 :root {
   --font-dm-mono: 'DM Mono', monospace;
   --font-dm-sans: 'DM Sans', sans-serif;
+  --dark-color: #161925;
+  --dark-text-color: #e1e2ef;
+  --accent-color: #9b287b;
 }
 
 * {
-  border-color: rebeccapurple;
+  border-color: var(--accent-color);
 }
 
 body {
   font-family: var(--font-dm-sans);
+  -webkit-font-smoothing: antialiased;
 }
 
 section {
@@ -21,7 +25,9 @@ section {
 
 h2,
 h3,
-h4 {
+h4,
+h5,
+h6 {
   font-family: var(--font-dm-mono);
   margin-bottom: 0.7rem;
 }
