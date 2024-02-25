@@ -9,6 +9,14 @@ const config: Config = {
   ],
   darkMode: 'class',
   theme: {
+    colors: {
+      darkBGPrimary: 'var(--dark-color)',
+      darkTextPrimary: 'var(--dark-text-color)',
+      darkAccent: 'var(--dark-accent-color)',
+      lightBGPrimary: 'var(--ligth-color)',
+      lightTextPrimary: 'var(--light-text-color)',
+      lightAccent: 'var(--light-accent-color)',
+    },
     extend: {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

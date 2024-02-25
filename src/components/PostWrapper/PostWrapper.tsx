@@ -29,7 +29,7 @@ export const PostWrapper = ({
         <h2 className='text-3xl'>{title}</h2>
         <p className='text-xl text-balance'>{excerpt}</p>
 
-        <hr className='mt-4 mb-3 w-[200px]' />
+        <hr className='mt-4 mb-3 w-[200px] border-lightAccent dark:border-darkAccent' />
 
         <span className='text-xs uppercase block mb-1'>
           Published on {date}

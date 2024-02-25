@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang='en' className='md:text-lg'>
       <body
-        className={`${dmMono.variable} ${dmSans.variable} dark:bg-[var(--dark-color)] dark:text-[var(--dark-text-color)]`}
+        className={`${dmMono.variable} ${dmSans.variable} bg-lightBGPrimary text-lightTextPrimary dark:bg-darkBGPrimary dark:text-darkTextPrimary`}
       >
         {children}
       </body>

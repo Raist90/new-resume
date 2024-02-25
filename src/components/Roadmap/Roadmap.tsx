@@ -1,14 +1,18 @@
 import type { HomepageProps } from '@/types'
 import { PortableText } from '@portabletext/react'
+import { useId } from 'react'
 
 type RoadmapProps = Pick<HomepageProps, 'workExperience'>
 
 export const Roadmap = ({ workExperience }: RoadmapProps) => {
   const { title, companies } = workExperience
+  const titleId = useId()
   return (
-    <section className='grid'>
+    <section aria-labelledby={titleId} className='grid'>
       <div className='flex flex-col'>
-        <h2 className='text-3xl'>{title}</h2>
+        <header id={titleId}>
+          <h2 className='text-3xl'>{title}</h2>
+        </header>
         <article className='grid gap-6'>
           {companies.map(
             ({ id, name, role, from, to, description, isCurrent }) => (

@@ -11,7 +11,7 @@ export const TagList = ({ tags }: { tags: string[] }) => {
           <Link key={index + 2} href={`/tags/${tag}`}>
             <span className='text-xs uppercase'>{tag}</span>
             {!isLastIndex && (
-              <span className='text-[var(--accent-color)]'> /</span>
+              <span className='text-lightAccent dark:text-darkAccent'> /</span>
             )}
           </Link>
         )

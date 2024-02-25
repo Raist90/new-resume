@@ -30,7 +30,10 @@ export const Profile = ({ profile }: ProfileProps) => {
         <div>
           <ul className='flex flex-wrap gap-3'>
             {expertiseLabels.map((label) => (
-              <li className='border p-2' key={label}>
+              <li
+                className='border border-lightAccent dark:border-darkAccent p-2'
+                key={label}
+              >
                 {label}
               </li>
             ))}

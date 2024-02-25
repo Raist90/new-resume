@@ -31,7 +31,9 @@ export const LatestPosts = ({ posts, ...rest }: LatestPostsProps) => {
                 </article>
               </Link>
 
-              {!isLastIndex && <hr className='my-2' />}
+              {!isLastIndex && (
+                <hr className='my-2 border-lightAccent dark:border-darkAccent' />
+              )}
             </div>
           )
         })}

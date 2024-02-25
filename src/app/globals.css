@@ -7,11 +7,10 @@
   --font-dm-sans: 'DM Sans', sans-serif;
   --dark-color: #161925;
   --dark-text-color: #e1e2ef;
-  --accent-color: #9b287b;
-}
-
-* {
-  border-color: var(--accent-color);
+  --dark-accent-color: #9b287b;
+  --light-color: #ede3e4;
+  --light-text-color: #0c120c;
+  --light-accent-color: #006daa;
 }
 
 body {
