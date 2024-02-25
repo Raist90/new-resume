@@ -4,7 +4,7 @@ import type { DefaultDocumentNodeResolver } from 'sanity/structure'
 import { getPreviewUrl } from '.'
 
 /** @description Add document types here that you want to have a preview pane */
-const documentsWithPreview = ['page', 'profile']
+const documentsWithPreview = ['page', 'profile', 'projectPage']
 
 export const defaultDocumentNode: DefaultDocumentNodeResolver = (
   S,
@@ -16,6 +16,9 @@ export const defaultDocumentNode: DefaultDocumentNodeResolver = (
       S.view
         .component(Iframe)
         .options({
+          reload: {
+            button: true,
+          },
           url: (doc: SanityDocument & { slug: { current: string } }) =>
             getPreviewUrl(doc),
         })
