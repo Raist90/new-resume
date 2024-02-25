@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Media } from '..'
+import { Media, Separator } from '..'
 import type { Post } from '@/types'
 
 type LatestPostsProps = {
@@ -32,7 +32,7 @@ export const LatestPosts = ({ posts, ...rest }: LatestPostsProps) => {
               </Link>
 
               {!isLastIndex && (
-                <hr className='my-2 border-lightAccent dark:border-darkAccent' />
+                <Separator className='my-2 border-lightAccent dark:border-darkAccent' />
               )}
             </div>
           )
