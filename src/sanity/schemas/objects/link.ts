@@ -42,7 +42,6 @@ const fields = [
         return ''
       },
       slugify: (input: string) => `/${input.toLowerCase()}`,
-      /** @todo Make sure to add an `isUnique` validation rule function */
     },
     hidden: ({ parent }) => parent.linkType !== 'external',
     validation: linkValidation,

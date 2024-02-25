@@ -1,3 +1,4 @@
+import { isUniqueAcrossAllDocuments } from '@/sanity/helpers'
 import { FileText } from 'lucide-react'
 import { defineField, defineType } from 'sanity'
 
@@ -14,6 +15,7 @@ const fields = [
     type: 'slug',
     options: {
       source: 'title',
+      isUnique: isUniqueAcrossAllDocuments,
     },
     validation: (Rule) => Rule.required(),
   }),
@@ -31,8 +33,7 @@ const fields = [
   }),
 ]
 
-/** @todo Not sure why this const is capitalized, double check it */
-export const Page = defineType({
+export const page = defineType({
   name: 'page',
   title: 'Page',
   type: 'document',

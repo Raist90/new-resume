@@ -1,7 +1,5 @@
+import { capitalize } from '@/helpers/capitalize'
 import * as allBlockQueries from '../blocks'
-
-/** @todo Maybe move this elsewhere */
-const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
 
 export const blocksQuery = Object.entries(allBlockQueries)
   .map(([blockQueryKey, blockQuery]) => {

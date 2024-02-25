@@ -7,7 +7,6 @@ type LatestPostsProps = {
   className?: string
 }
 
-/** @todo Find a way to generate an `id` for each post */
 export const LatestPosts = ({ posts, ...rest }: LatestPostsProps) => {
   return (
     <section {...rest}>
@@ -17,7 +16,7 @@ export const LatestPosts = ({ posts, ...rest }: LatestPostsProps) => {
         {posts.map((post, index) => {
           const isLastIndex = index === posts.length - 1
           return (
-            <div key={post.title}>
+            <div key={post.slug}>
               <Link href={`/posts/${post.slug}`}>
                 <article className='flex lg:items-center gap-4 p-2'>
                   <div className='relative aspect-square w-[60px] h-[60px]'>
