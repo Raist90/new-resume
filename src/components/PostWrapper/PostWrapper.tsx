@@ -1,3 +1,4 @@
+import { useId } from 'react'
 import { Media, Separator, TagList } from '..'
 
 type PostWrapperProps = {
@@ -21,13 +22,21 @@ export const PostWrapper = ({
   tags,
   excerpt,
 }: PostWrapperProps) => {
+  const postTitle = useId()
   return (
-    <section className='w-full md:w-10/12 lg:w-1/2 mx-auto grid gap-4'>
+    <section
+      aria-labelledby={postTitle}
+      className='w-full md:w-10/12 lg:w-1/2 mx-auto grid gap-4'
+    >
       <div>
         <TagList tags={tags} />
 
-        <h2 className='text-3xl'>{title}</h2>
-        <p className='text-xl text-balance'>{excerpt}</p>
+        <hgroup>
+          <h2 id={postTitle} className='text-3xl'>
+            {title}
+          </h2>
+          <p className='text-xl text-balance'>{excerpt}</p>
+        </hgroup>
 
         <Separator className='mt-4 mb-3 w-[200px] border-lightAccent dark:border-darkAccent' />
 

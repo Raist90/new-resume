@@ -13,11 +13,13 @@ export const Roadmap = ({ workExperience }: RoadmapProps) => {
         <header id={titleId}>
           <h2 className='text-3xl'>{title}</h2>
         </header>
-        <article className='grid gap-6'>
+        <div className='grid gap-6'>
           {companies.map(
             ({ id, name, role, from, to, description, isCurrent }) => (
-              <div key={id}>
-                <h3 className='text-2xl'>{name}</h3>
+              <article aria-labelledby={id} key={id}>
+                <h3 id={id} className='text-2xl'>
+                  {name}
+                </h3>
                 <p className='text-xl'>{role}</p>
                 {isCurrent ? (
                   <p className='text-xs'>{from} - Current</p>
@@ -27,10 +29,10 @@ export const Roadmap = ({ workExperience }: RoadmapProps) => {
                   </p>
                 )}
                 <PortableText value={description} />
-              </div>
+              </article>
             ),
           )}
-        </article>
+        </div>
       </div>
     </section>
   )
