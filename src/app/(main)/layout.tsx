@@ -1,11 +1,12 @@
 import { Navigation } from '@/components'
-import { getNavigation } from '@/helpers/getNavigation'
+import { getCMSContent } from '@/helpers/getCMSContent'
+
 export default async function MainLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const { primary } = await getNavigation()
+  const { primary } = await getCMSContent('navigation')
   return (
     <main className='grid p-8'>
       <Navigation>
