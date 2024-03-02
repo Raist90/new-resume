@@ -1,19 +1,24 @@
-export type Frontmatter = {
-  title: string
-  date: string
-  cover: string
-  tags: string
-  excerpt: string
-}
+import z from 'zod'
 
-export type Post = {
-  title: string
-  date: string
-  cover: {
-    src: string
-    alt: string
-  }
-  tags: string[]
-  excerpt: string
-  slug: string
-}
+export const postSchema = z.object({
+  title: z.string(),
+  date: z.string(),
+  cover: z.object({
+    alt: z.string(),
+    src: z.string(),
+  }),
+  tags: z.array(z.string()),
+  excerpt: z.string(),
+  slug: z.string(),
+})
+
+export const frontmatterSchema = z.object({
+  title: z.string(),
+  date: z.string(),
+  cover: z.string(),
+  tags: z.string(),
+  excerpt: z.string(),
+})
+
+export type Post = z.infer<typeof postSchema>
+export type Frontmatter = z.infer<typeof frontmatterSchema>

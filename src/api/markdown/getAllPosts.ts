@@ -1,8 +1,9 @@
 import path from 'path'
-import type { Frontmatter, Post } from '@/types'
+import { frontmatterSchema, type Frontmatter, type Post } from '@/types'
 import { postsFormatter } from './formatters'
 import { readFileSync, readdirSync } from 'fs'
 import { compileMDX } from 'next-mdx-remote/rsc'
+import { notFound } from 'next/navigation'
 
 export const getAllPosts = async () => {
   const postsPath = path.join(process.cwd(), 'src/posts')
@@ -24,7 +25,16 @@ export const getAllPosts = async () => {
       },
     })
 
-    allPosts.push(postsFormatter(frontmatter))
+    const result = frontmatterSchema.safeParse(frontmatter)
+
+    if (!result.success) {
+      if (process.env.NODE_ENV === 'development') {
+        throw new Error(`Failed to parse response: ${result.error}`)
+      }
+      return notFound()
+    }
+
+    allPosts.push(postsFormatter(result.data))
   }
   return allPosts.sort((a, b) => b.date.localeCompare(a.date))
 }
