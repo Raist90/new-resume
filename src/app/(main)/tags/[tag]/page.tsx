@@ -1,6 +1,13 @@
 import { getAllPosts } from '@/api'
 import { PostCard } from '@/components'
 
+export const generateStaticParams = async () => {
+  const allPosts = await getAllPosts()
+  return allPosts.map((post) => ({
+    tags: post.tags,
+  }))
+}
+
 const TagPage = async ({ params }: { params: { tag: string } }) => {
   const { tag } = params
   const allPosts = await getAllPosts()

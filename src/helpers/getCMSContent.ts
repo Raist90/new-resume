@@ -1,6 +1,16 @@
-import { homepageQuery, navigationQuery, projectPageQuery } from '@/api'
+import {
+  homepageQuery,
+  navigationQuery,
+  projectPageListQuery,
+  projectPageQuery,
+} from '@/api'
 import { client } from '@/sanity/lib/client'
-import { homepageSchema, navigationSchema, projectPageSchema } from '@/types'
+import {
+  homepageSchema,
+  navigationSchema,
+  projectPageListSchema,
+  projectPageSchema,
+} from '@/types'
 import { notFound } from 'next/navigation'
 import z from 'zod'
 
@@ -10,14 +20,19 @@ const documentMap = {
     schema: homepageSchema,
     hasQueryParams: false,
   },
+  navigation: {
+    query: navigationQuery,
+    schema: navigationSchema,
+    hasQueryParams: false,
+  },
   projectPage: {
     query: projectPageQuery,
     schema: projectPageSchema,
     hasQueryParams: true,
   },
-  navigation: {
-    query: navigationQuery,
-    schema: navigationSchema,
+  projectPageList: {
+    query: projectPageListQuery,
+    schema: projectPageListSchema,
     hasQueryParams: false,
   },
 }

@@ -20,3 +20,9 @@ export const projectPageSchema = z.object({
     ]),
   ),
 })
+
+export const projectPageListSchema = z.array(
+  z.object({
+    slug: z.string(),
+  }),
+)

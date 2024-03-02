@@ -3,6 +3,13 @@ import * as blockComponents from '@/blocks'
 import { randomUUID } from 'crypto'
 import { getCMSContent } from '@/helpers/getCMSContent'
 
+export const generateStaticParams = async () => {
+  const projectPages = await getCMSContent('projectPageList')
+  return projectPages.map((page) => ({
+    slug: page.slug,
+  }))
+}
+
 const ProjectPage = async ({ params }: { params: { slug: string } }) => {
   const { slug } = params
   const { title, blocks } = await getCMSContent('projectPage', { slug })
