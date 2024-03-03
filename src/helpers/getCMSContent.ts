@@ -14,6 +14,7 @@ import {
 import { notFound } from 'next/navigation'
 import z from 'zod'
 
+/** @description Map of all documents in the CMS. Add all the other documents here. */
 const documentMap = {
   homepage: {
     query: homepageQuery,
@@ -29,6 +30,9 @@ const documentMap = {
     query: projectPageQuery,
     schema: projectPageSchema,
     hasQueryParams: true,
+    queryParams: z.object({
+      slug: z.string(),
+    }),
   },
   projectPageList: {
     query: projectPageListQuery,
@@ -37,10 +41,29 @@ const documentMap = {
   },
 }
 
-export const getCMSContent = async <T extends keyof typeof documentMap>(
+export async function getCMSContent<
+  T extends Exclude<keyof typeof documentMap, 'projectPage'>,
+>(documentType: T): Promise<z.infer<(typeof documentMap)[T]['schema']>>
+
+export async function getCMSContent<
+  T extends Extract<keyof typeof documentMap, 'projectPage'>,
+>(
   documentType: T,
-  queryParams?: Record<string, string>,
-): Promise<z.infer<(typeof documentMap)[T]['schema']>> => {
+  queryParams: z.infer<(typeof documentMap)[T]['queryParams']>,
+): Promise<z.infer<(typeof documentMap)[T]['schema']>>
+
+/** @description Fetches content from the CMS. These above are function overloads.
+ *
+ * @param documentType - The type of document to fetch
+ * @param queryParams - The query params needed to fetch document
+ * @returns The content of the document. It redirects the user to 404 page if the document is not correctly parsed against its own schema.
+ */
+export async function getCMSContent<T extends keyof typeof documentMap>(
+  documentType: T,
+  queryParams?: T extends 'projectPage'
+    ? z.infer<typeof documentMap.projectPage.queryParams>
+    : {},
+): Promise<z.infer<(typeof documentMap)[T]['schema']>> {
   if (documentMap[documentType].hasQueryParams && !queryParams) {
     throw new Error(`Query params are required for ${documentType} document`)
   }
