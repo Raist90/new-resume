@@ -1,5 +1,5 @@
+import { HeadingWithImage } from '..'
 import { useId } from 'react'
-import { Media, Separator, TagList } from '..'
 
 type PostWrapperProps = {
   children: React.ReactNode
@@ -22,32 +22,20 @@ export const PostWrapper = ({
   tags,
   excerpt,
 }: PostWrapperProps) => {
-  const postTitle = useId()
+  const titleId = useId()
   return (
     <section
-      aria-labelledby={postTitle}
+      aria-labelledby={titleId}
       className='w-full md:w-10/12 lg:w-1/2 mx-auto grid gap-4'
     >
-      <div>
-        <TagList tags={tags} />
-
-        <hgroup>
-          <h2 id={postTitle} className='text-3xl'>
-            {title}
-          </h2>
-          <p className='text-xl text-balance'>{excerpt}</p>
-        </hgroup>
-
-        <Separator className='mt-4 mb-3 w-[200px] border-lightAccent dark:border-darkAccent' />
-
-        <span className='text-xs uppercase block mb-1'>
-          Published on {date}
-        </span>
-
-        <div className='aspect-[16/9] relative my-4'>
-          <Media image={cover} />
-        </div>
-      </div>
+      <HeadingWithImage
+        id={titleId}
+        title={title}
+        excerpt={excerpt}
+        image={cover}
+        date={date}
+        tags={tags}
+      />
 
       <div>{children}</div>
     </section>

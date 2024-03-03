@@ -1,3 +1,4 @@
+export * from './HeadingWithImage'
 export * from './LatestPosts'
 export * from './Media'
 export * from './Navigation'

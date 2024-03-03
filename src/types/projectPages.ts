@@ -3,6 +3,11 @@ import { blockImageSchema, blockTextImageSchema, blockTextSchema } from '.'
 
 export const projectPageSchema = z.object({
   title: z.string(),
+  excerpt: z.string(),
+  cover: z.object({
+    alt: z.string(),
+    src: z.string(),
+  }),
   blocks: z.array(
     z.union([
       z.object({
