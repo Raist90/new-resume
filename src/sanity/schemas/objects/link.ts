@@ -1,6 +1,7 @@
-import { defineField, defineType, isArray, isString } from 'sanity'
-import { linkValidation, referenceValidation } from '../validationRules'
+import { defineField, defineType } from 'sanity'
+import { generateLinkValidation } from '../validationRules'
 import { Link } from 'lucide-react'
+import { isArray, isString } from '@/helpers/predicates'
 
 const fields = [
   defineField({
@@ -27,7 +28,7 @@ const fields = [
     type: 'reference',
     to: [{ type: 'page' }],
     hidden: ({ parent }) => parent.linkType !== 'internal',
-    validation: referenceValidation,
+    validation: (Rule) => generateLinkValidation(Rule, 'internal'),
   }),
   defineField({
     name: 'externalLink',
@@ -44,7 +45,7 @@ const fields = [
       slugify: (input: string) => `/${input.toLowerCase()}`,
     },
     hidden: ({ parent }) => parent.linkType !== 'external',
-    validation: linkValidation,
+    validation: (Rule) => generateLinkValidation(Rule, 'external'),
   }),
 ]
 

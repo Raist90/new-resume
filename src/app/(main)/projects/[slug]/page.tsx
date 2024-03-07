@@ -19,7 +19,7 @@ const ProjectPage = async ({ params }: { params: { slug: string } }) => {
   const titleId = randomUUID()
 
   return (
-    <section aria-labelledby={titleId} className='lg:w-1/2 mx-auto'>
+    <section className='lg:w-1/2 mx-auto'>
       <HeadingWithImage
         id={titleId}
         title={title}

@@ -1,37 +1,38 @@
-import type { ReferenceRule, SlugRule } from 'sanity'
+import { isObject, isString } from '@/helpers/predicates'
+import type {
+  ReferenceRule,
+  Reference,
+  ValidationContext,
+  SlugRule,
+} from 'sanity'
 
-export const referenceValidation = (Rule: ReferenceRule) =>
-  Rule.custom((value, context) => {
-    const { parent } = context
+export function generateLinkValidation(
+  Rule: ReferenceRule,
+  linkType: 'internal',
+): ReferenceRule
+export function generateLinkValidation(
+  Rule: SlugRule,
+  linkType: 'external',
+): SlugRule
+export function generateLinkValidation(
+  Rule: ReferenceRule,
+  linkType: 'internal' | 'external',
+) {
+  return Rule.custom(
+    (value: Reference | undefined, context: ValidationContext) => {
+      const { parent } = context
+      const isInvalid =
+        isObject(parent) &&
+        'linkType' in parent &&
+        isString(parent.linkType) &&
+        parent.linkType === linkType &&
+        !value
 
-    if (
-      parent &&
-      typeof parent === 'object' &&
-      'linkType' in parent &&
-      typeof parent.linkType === 'string' &&
-      parent.linkType === 'internal' &&
-      !value
-    ) {
-      return 'Internal link must be set if link type is internal'
-    }
+      if (isInvalid) {
+        return `${linkType} link must be set if link type is ${linkType}`
+      }
 
-    return true
-  })
-
-export const linkValidation = (Rule: SlugRule) =>
-  Rule.custom((value, context) => {
-    const { parent } = context
-
-    if (
-      parent &&
-      typeof parent === 'object' &&
-      'linkType' in parent &&
-      typeof parent.linkType === 'string' &&
-      parent.linkType === 'external' &&
-      !value
-    ) {
-      return 'External link must be set if link type is external'
-    }
-
-    return true
-  })
+      return true
+    },
+  )
+}
