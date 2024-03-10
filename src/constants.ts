@@ -1,3 +1,5 @@
+export const POSTS_DIRECTORY = 'src/posts'
+
 export const expertiseLabels = [
   'Javascript',
   'Typescript',

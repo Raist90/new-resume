@@ -5,7 +5,7 @@ import { useId } from 'react'
 import { getLinkAriaLabel } from '@/helpers/accessibility'
 
 type LatestPostsProps = {
-  posts: Omit<Post, 'date' | 'tags'>[]
+  posts: Post[]
   className?: string
 }
 
