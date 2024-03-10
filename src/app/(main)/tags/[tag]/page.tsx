@@ -1,8 +1,8 @@
-import { getAllPosts } from '@/api'
 import { PostCard } from '@/components'
+import { blogRouter } from '@/helpers/blogRouter'
 
 export const generateStaticParams = async () => {
-  const allPosts = await getAllPosts()
+  const allPosts = await blogRouter.fetch.allPosts()
   return allPosts.map((post) => ({
     tags: post.tags,
   }))
@@ -10,7 +10,7 @@ export const generateStaticParams = async () => {
 
 const TagPage = async ({ params }: { params: { tag: string } }) => {
   const { tag } = params
-  const allPosts = await getAllPosts()
+  const allPosts = await blogRouter.fetch.allPosts()
 
   /** @todo Handle this better */
   const posts = allPosts.filter((post) => post.tags.includes(tag))

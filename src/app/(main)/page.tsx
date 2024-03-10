@@ -1,12 +1,12 @@
 import { LatestPosts, Profile, Roadmap } from '@/components'
-import { getLatestPosts } from '@/api'
 import { getCMSContent } from '@/helpers/getCMSContent'
+import { blogRouter } from '@/helpers/blogRouter'
 
 const MAX_POSTS = 3
 
 const Homepage = async () => {
   const { profile, workExperience } = await getCMSContent('homepage')
-  const latestPosts = await getLatestPosts(MAX_POSTS)
+  const latestPosts = await blogRouter.fetch.latestPosts(MAX_POSTS)
 
   return (
     <>
