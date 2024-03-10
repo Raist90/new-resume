@@ -1,31 +1,11 @@
 import path from 'path'
 import type { Frontmatter, Post } from '@/types'
-import { readFileSync, readdirSync } from 'fs'
-import { compileMDX } from 'next-mdx-remote/rsc'
-import { postsFormatter } from '@/api/markdown'
-import type { JSXElementConstructor, ReactElement } from 'react'
-import { components } from '@/components'
-import { isNumber, isString } from './predicates'
+import { readdirSync } from 'fs'
+import { postsFormatter } from './formatters'
+import { isNumber, isString } from '@/helpers/predicates'
 import { POSTS_DIRECTORY } from '@/constants'
-
-type CompiledMDX = {
-  content: ReactElement<any, string | JSXElementConstructor<any>>
-  metadata: Post
-}
-
-const getCompiledData = async (source: string) => {
-  return await compileMDX({
-    source,
-    options: {
-      parseFrontmatter: true,
-    },
-    components: components,
-  })
-}
-
-const generateMDXSource = (postsPath: string, slug: string): string => {
-  return readFileSync(path.join(postsPath, slug, slug + '.mdx'), 'utf8')
-}
+import type { CompiledMDX } from './types'
+import { generateMDXSource, getCompiledData } from './helpers'
 
 async function fetchPostData(): Promise<Post[]>
 async function fetchPostData(slug: string): Promise<CompiledMDX>

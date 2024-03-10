@@ -1,5 +1,5 @@
 import { PostWrapper } from '@/components'
-import { blogRouter } from '@/helpers/blogRouter'
+import { blogRouter } from '@/routers/blogRouter'
 
 export const generateStaticParams = async () => {
   const posts = await blogRouter.fetch.allPosts()

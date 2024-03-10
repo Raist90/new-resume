@@ -1,5 +1,5 @@
 import { PostCard } from '@/components'
-import { blogRouter } from '@/helpers/blogRouter'
+import { blogRouter } from '@/routers/blogRouter'
 
 export const generateStaticParams = async () => {
   const allPosts = await blogRouter.fetch.allPosts()

@@ -1,6 +1,6 @@
 import { LatestPosts, Profile, Roadmap } from '@/components'
 import { getCMSContent } from '@/helpers/getCMSContent'
-import { blogRouter } from '@/helpers/blogRouter'
+import { blogRouter } from '@/routers/blogRouter'
 
 const MAX_POSTS = 3
 
