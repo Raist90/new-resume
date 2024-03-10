@@ -1,12 +1,12 @@
 import { Navigation } from '@/components'
-import { getCMSContent } from '@/helpers/getCMSContent'
+import { CMSRouter } from '@/routers/CMSRouter'
 
 export default async function MainLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const { primary } = await getCMSContent('navigation')
+  const { primary } = await CMSRouter('navigation')
   return (
     <main className='grid p-8'>
       <Navigation>

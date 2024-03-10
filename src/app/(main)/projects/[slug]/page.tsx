@@ -1,11 +1,11 @@
 import { blockRenderer } from '@/helpers/blockRenderer'
 import * as blockComponents from '@/blocks'
 import { randomUUID } from 'crypto'
-import { getCMSContent } from '@/helpers/getCMSContent'
 import { HeadingWithImage } from '@/components'
+import { CMSRouter } from '@/routers/CMSRouter'
 
 export const generateStaticParams = async () => {
-  const projectPages = await getCMSContent('projectPageList')
+  const projectPages = await CMSRouter('projectPageList')
   return projectPages.map((page) => ({
     slug: page.slug,
   }))
@@ -13,7 +13,7 @@ export const generateStaticParams = async () => {
 
 const ProjectPage = async ({ params }: { params: { slug: string } }) => {
   const { slug } = params
-  const { title, cover, excerpt, blocks } = await getCMSContent('projectPage', {
+  const { title, cover, excerpt, blocks } = await CMSRouter('projectPage', {
     slug,
   })
   const titleId = randomUUID()
