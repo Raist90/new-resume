@@ -5,7 +5,7 @@ import { blogRouter } from '@/routers/blogRouter'
 const MAX_POSTS = 3
 
 const Homepage = async () => {
-  const { profile, workExperience } = await CMSRouter('homepage')
+  const { profile, workExperience } = await CMSRouter.fetch.homepage()
   const latestPosts = await blogRouter.fetch.latestPosts(MAX_POSTS)
 
   return (

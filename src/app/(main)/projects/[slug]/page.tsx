@@ -5,7 +5,7 @@ import { HeadingWithImage } from '@/components'
 import { CMSRouter } from '@/routers/CMSRouter'
 
 export const generateStaticParams = async () => {
-  const projectPages = await CMSRouter('projectPageList')
+  const projectPages = await CMSRouter.fetch.projectPageList()
   return projectPages.map((page) => ({
     slug: page.slug,
   }))
@@ -13,9 +13,8 @@ export const generateStaticParams = async () => {
 
 const ProjectPage = async ({ params }: { params: { slug: string } }) => {
   const { slug } = params
-  const { title, cover, excerpt, blocks } = await CMSRouter('projectPage', {
-    slug,
-  })
+  const { title, cover, excerpt, blocks } =
+    await CMSRouter.fetch.projectPage(slug)
   const titleId = randomUUID()
 
   return (

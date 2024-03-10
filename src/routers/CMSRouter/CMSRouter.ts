@@ -41,11 +41,11 @@ const documentMap = {
   },
 }
 
-export async function CMSRouter<
+async function fetchCMSData<
   T extends Exclude<keyof typeof documentMap, 'projectPage'>,
 >(documentType: T): Promise<z.infer<(typeof documentMap)[T]['schema']>>
 
-export async function CMSRouter<
+async function fetchCMSData<
   T extends Extract<keyof typeof documentMap, 'projectPage'>,
 >(
   documentType: T,
@@ -58,7 +58,7 @@ export async function CMSRouter<
  * @param queryParams - The query params needed to fetch document
  * @returns The content of the document. It redirects the user to 404 page if the document is not correctly parsed against its own schema.
  */
-export async function CMSRouter<T extends keyof typeof documentMap>(
+async function fetchCMSData<T extends keyof typeof documentMap>(
   documentType: T,
   queryParams?: T extends 'projectPage'
     ? z.infer<typeof documentMap.projectPage.queryParams>
@@ -93,4 +93,14 @@ export async function CMSRouter<T extends keyof typeof documentMap>(
   }
 
   return result.data
+}
+
+export const CMSRouter = {
+  fetch: {
+    homepage: async () => await fetchCMSData('homepage'),
+    navigation: async () => await fetchCMSData('navigation'),
+    projectPage: async (slug: string) =>
+      await fetchCMSData('projectPage', { slug }),
+    projectPageList: async () => await fetchCMSData('projectPageList'),
+  },
 }

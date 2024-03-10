@@ -6,7 +6,7 @@ export default async function MainLayout({
 }: {
   children: React.ReactNode
 }) {
-  const { primary } = await CMSRouter('navigation')
+  const { primary } = await CMSRouter.fetch.navigation()
   return (
     <main className='grid p-8'>
       <Navigation>
