@@ -3,6 +3,7 @@ import type { Post } from '@/types'
 import { POSTS_DIRECTORY } from '@/constants'
 import type { CompiledMDX } from './types'
 import { getAllPosts, getSinglePostBySlug } from './getters'
+import { isNumber, isString } from '@/helpers/predicates'
 
 async function fetchPostData(): Promise<Post[]>
 async function fetchPostData(slug: string): Promise<CompiledMDX>
@@ -13,11 +14,14 @@ async function fetchPostData(
 ): Promise<Post[] | CompiledMDX> {
   const postsPath = path.join(process.cwd(), POSTS_DIRECTORY)
 
-  switch (typeof slugOrLimit) {
-    case 'string':
+  const isSlug = isString(slugOrLimit)
+  const isLimit = isNumber(slugOrLimit)
+
+  switch (true) {
+    case isSlug:
       return getSinglePostBySlug(postsPath, slugOrLimit)
-    case 'number':
-      return getAllPosts(postsPath, Number(slugOrLimit))
+    case isLimit:
+      return getAllPosts(postsPath, slugOrLimit)
     default:
       return getAllPosts(postsPath)
   }
