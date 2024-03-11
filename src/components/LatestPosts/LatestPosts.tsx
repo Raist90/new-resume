@@ -38,9 +38,7 @@ export const LatestPosts = ({ posts, ...rest }: LatestPostsProps) => {
                 </div>
               </Link>
 
-              {!isLastIndex && (
-                <Separator className='my-2 border-lightAccent dark:border-darkAccent' />
-              )}
+              {!isLastIndex && <Separator className='my-2' />}
             </div>
           )
         })}

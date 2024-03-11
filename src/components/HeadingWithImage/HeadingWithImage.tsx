@@ -44,7 +44,7 @@ export const HeadingWithImage = ({
         </span>
       )}
 
-      <Separator className='mt-4 mb-3 w-[200px] border-lightAccent dark:border-darkAccent' />
+      <Separator className='mt-4 mb-3 w-[200px]' />
 
       <div className='aspect-[16/9] relative my-4'>
         <Media image={image} />

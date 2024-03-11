@@ -13,7 +13,7 @@ const getBlocks = <T extends JSX.Element>(leftBlock: T, rightBlock: T) => {
 }
 
 export const TextImage = ({ image, text, imagePosition }: BlockTextImage) => {
-  const imageBlock = <ImageBlock image={image} />
+  const imageBlock = <ImageBlock className='!h-[500px]' image={image} />
   const textBlock = <TextBlock className='m-0' text={text} />
 
   const directionMap = {
@@ -22,7 +22,7 @@ export const TextImage = ({ image, text, imagePosition }: BlockTextImage) => {
   }
 
   return (
-    <div className='grid md:grid-cols-12 gap-4 md:ml-[-100px]'>
+    <div className='grid md:grid-cols-12 gap-8 lg:ml-[-100px] py-4'>
       {directionMap[imagePosition]}
     </div>
   )
