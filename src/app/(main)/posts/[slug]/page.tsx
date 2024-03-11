@@ -9,7 +9,6 @@ export const generateStaticParams = async () => {
   }))
 }
 
-/** @todo Move all the logic inside `getSinglePost` */
 const PostPage = async ({ params }: { params: { slug: string } }) => {
   const { slug } = params
   const { content, metadata } = (await blogRouter.fetch.singlePost(slug)) || {}

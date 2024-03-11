@@ -1,11 +1,12 @@
 import path from 'path'
 import type { Post } from '@/types'
 import { POSTS_DIRECTORY } from '@/constants'
-import type { CompiledMDX } from './types'
+import type { BlogRouterOptions, CompiledMDX } from './types'
 import { getAllPosts, getSinglePostBySlug } from './getters'
 import { isNumber, isString } from '@/helpers/predicates'
 
 async function fetchPostData(): Promise<Post[]>
+async function fetchPostData(options: BlogRouterOptions): Promise<Post[]>
 async function fetchPostData(slug: string): Promise<CompiledMDX>
 async function fetchPostData(limit: number): Promise<Post[]>
 
@@ -23,6 +24,7 @@ async function fetchPostData(
     case isLimit:
       return getAllPosts(postsPath, slugOrLimit)
     default:
+      // This will run when consuming `allPosts` with `Options` or with no arguments at all
       return getAllPosts(postsPath)
   }
 }
@@ -30,6 +32,10 @@ async function fetchPostData(
 export const blogRouter = {
   fetch: {
     allPosts: async () => await fetchPostData(),
+    allPostsWithOptions: async (options: BlogRouterOptions) =>
+      await fetchPostData(options).then((posts) =>
+        posts.filter((post) => post.tags.includes(options.filter.byTag)),
+      ),
     latestPosts: async (limit: number) => await fetchPostData(limit),
     singlePost: async (slug: string) => await fetchPostData(slug),
   },

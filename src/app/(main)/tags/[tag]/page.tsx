@@ -10,10 +10,10 @@ export const generateStaticParams = async () => {
 
 const TagPage = async ({ params }: { params: { tag: string } }) => {
   const { tag } = params
-  const allPosts = await blogRouter.fetch.allPosts()
+  const posts = await blogRouter.fetch.allPostsWithOptions({
+    filter: { byTag: tag },
+  })
 
-  /** @todo Handle this better */
-  const posts = allPosts.filter((post) => post.tags.includes(tag))
   return (
     <section>
       <h2 className='text-3xl'>Posts tagged with {`"${tag}"`}</h2>
