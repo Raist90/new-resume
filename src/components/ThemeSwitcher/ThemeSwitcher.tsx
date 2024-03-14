@@ -29,7 +29,7 @@ export const ThemeSwitcher = () => {
   if (!mounted) return
 
   return (
-    <button onClick={toggleTheme} className='block'>
+    <button type='button' onClick={toggleTheme} className='block'>
       {theme === 'light' ? <Moon /> : <Sun />}
     </button>
   )

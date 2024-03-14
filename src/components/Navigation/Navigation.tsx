@@ -1,17 +1,20 @@
 import Link from 'next/link'
 import { dmMono } from '@/fonts'
-import { ThemeSwitcher } from '..'
+import { SearchButton, ThemeSwitcher } from '..'
 import type { Navigation as NavigationType } from '@/types'
 
 const NavigationComponent = ({ children }: { children: React.ReactNode }) => {
   return (
-    <nav className={`${dmMono.className} lg:w-1/2 lg:mx-auto grid py-4`}>
+    <nav
+      role='navigation'
+      className={`${dmMono.className} lg:w-1/2 lg:mx-auto grid py-4`}
+    >
       {children}
     </nav>
   )
 }
 
-export const Primary = async ({ primary }: NavigationType) => {
+export const Primary = async ({ primary, posts }: NavigationType) => {
   return (
     <ul className='inline-flex gap-x-3 items-center w-max'>
       {primary.map((item) => {
@@ -23,6 +26,7 @@ export const Primary = async ({ primary }: NavigationType) => {
           </li>
         )
       })}
+      <SearchButton posts={posts} />
       <ThemeSwitcher />
     </ul>
   )
