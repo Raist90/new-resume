@@ -5,18 +5,24 @@ import { Search } from 'lucide-react'
 import { Fragment, useState } from 'react'
 import { useBlogRouter } from '@/contexts'
 import { SearchButtonDialogResults } from './partials'
+import { getFilteredSearchResults } from './helpers'
 
 type SearchButtonDialogProps = {
   isOpen: boolean
   closeModal: () => void
-  headerHeight: number
+  headerRects: {
+    headerHeight: number
+    headerWidth: number
+  }
 }
 
+/** @todo Dialog should reset search results when closed */
 export const SearchButtonDialog = ({
   isOpen,
   closeModal,
-  headerHeight,
+  headerRects,
 }: SearchButtonDialogProps) => {
+  const { headerHeight, headerWidth } = headerRects
   const customInset = `${headerHeight}px 0 0 0`
 
   const posts = useBlogRouter()
@@ -40,25 +46,11 @@ export const SearchButtonDialog = ({
 
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value
-    if (searchCategory === 'Posts') {
-      const filteredPosts = posts.filter(
-        ({ title }) =>
-          query.length > 0 &&
-          [title].some((str) => str.toLowerCase().includes(query)),
-      )
-      setSearchResult(filteredPosts)
-    }
-    if (searchCategory === 'Tags') {
-      const filteredPosts = posts.filter((post) =>
-        post.tags.some(
-          (tag) =>
-            tag === e.target.value || (query.length > 0 && tag.includes(query)),
-        ),
-      )
-      setSearchResult(filteredPosts)
-    }
+    const queryResults = getFilteredSearchResults(posts, searchCategory, query)
+    setSearchResult(queryResults)
   }
 
+  /** @todo Ideally here when clicking a button the search results should be reset or even better we should update the results with the current query */
   const onButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     const clickedButton = e.currentTarget.innerHTML as keyof typeof initialState
@@ -104,7 +96,10 @@ export const SearchButtonDialog = ({
                 leaveFrom='opacity-100 scale-100'
                 leaveTo='opacity-0 scale-95'
               >
-                <Dialog.Panel className='w-full transform overflow-hidden bg-white shadow-xl transition-all bg-lightBGPrimary dark:bg-darkBGPrimary border border-gray-200 dark:border-gray-600 rounded-lg'>
+                <Dialog.Panel
+                  style={{ width: headerWidth }}
+                  className='transform overflow-hidden bg-white shadow-xl transition-all bg-lightBGPrimary dark:bg-darkBGPrimary border border-gray-200 dark:border-gray-600 rounded-lg'
+                >
                   <div className='flex h-10 gap-2 p-2'>
                     <div className='h-full flex items-center'>
                       <Search size={16} />

@@ -15,7 +15,7 @@ export default async function MainLayout({
     <main className='grid p-8'>
       <Navigation>
         <PostsProvider posts={posts}>
-          <Navigation.Primary primary={primary} posts={posts} />
+          <Navigation.Primary primary={primary} />
         </PostsProvider>
       </Navigation>
       {children}

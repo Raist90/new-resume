@@ -12,30 +12,31 @@ type SearchButtonDialogResultsProps = {
 export const SearchButtonDialogResults = ({
   closeModal,
   resetSearchResults,
-  searchResult: posts,
+  searchResult: items,
 }: SearchButtonDialogResultsProps) => {
   const handleClick = () => {
     closeModal()
     resetSearchResults()
   }
+  /** @todo Here `Link` should ideally be a `button` that redirects by using `useRouter` */
   return (
     <div className='grid gap-2'>
-      {posts.map((post) => {
+      {items.map((item) => {
         return (
-          <div key={post.slug}>
+          <div key={item.slug}>
             <Link
               onClick={handleClick}
-              aria-label={getLinkAriaLabel(post.title)}
-              href={`/posts/${post.slug}`}
+              aria-label={getLinkAriaLabel(item.title)}
+              href={`/posts/${item.slug}`}
             >
               <div className='flex lg:items-center gap-4 p-2'>
                 <div className='relative aspect-square w-[60px] h-[60px]'>
-                  <Media image={post.cover} options={'rounded-sm'} />
+                  <Media image={item.cover} options={'rounded-sm'} />
                 </div>
 
                 <div>
-                  <h3 className='mb-0 uppercase'>{post.title}</h3>
-                  <p className='text-sm'>{post.excerpt}</p>
+                  <h3 className='mb-0 uppercase'>{item.title}</h3>
+                  <p className='text-sm'>{item.excerpt}</p>
                 </div>
               </div>
             </Link>
