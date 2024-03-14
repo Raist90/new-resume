@@ -1,1 +1,1 @@
-export * from './useBlogRouter'
+export * from './usePosts'

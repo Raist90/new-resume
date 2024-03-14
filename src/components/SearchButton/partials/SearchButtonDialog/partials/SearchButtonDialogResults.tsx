@@ -1,7 +1,7 @@
 import { Media } from '@/components/Media'
 import type { Post } from '@/types'
-import Link from 'next/link'
 import { getLinkAriaLabel } from '@/helpers/accessibility'
+import { useRouter } from 'next/navigation'
 
 type SearchButtonDialogResultsProps = {
   closeModal: () => void
@@ -9,25 +9,29 @@ type SearchButtonDialogResultsProps = {
   searchResult: Post[] | []
 }
 
+/** @todo Double check accessibility here since we are wrapping everything in a button */
 export const SearchButtonDialogResults = ({
   closeModal,
   resetSearchResults,
   searchResult: items,
 }: SearchButtonDialogResultsProps) => {
-  const handleClick = () => {
+  const { push } = useRouter()
+
+  const handleClick = (slug: string) => {
     closeModal()
     resetSearchResults()
+    push(`/posts/${slug}`)
   }
-  /** @todo Here `Link` should ideally be a `button` that redirects by using `useRouter` */
+
   return (
     <div className='grid gap-2'>
       {items.map((item) => {
         return (
           <div key={item.slug}>
-            <Link
-              onClick={handleClick}
+            <button
+              className='text-start w-full'
+              onClick={() => handleClick(item.slug)}
               aria-label={getLinkAriaLabel(item.title)}
-              href={`/posts/${item.slug}`}
             >
               <div className='flex lg:items-center gap-4 p-2'>
                 <div className='relative aspect-square w-[60px] h-[60px]'>
@@ -39,7 +43,7 @@ export const SearchButtonDialogResults = ({
                   <p className='text-sm'>{item.excerpt}</p>
                 </div>
               </div>
-            </Link>
+            </button>
           </div>
         )
       })}

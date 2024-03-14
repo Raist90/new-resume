@@ -2,11 +2,9 @@
 import { Post } from '@/types'
 import { createContext, useContext, useState } from 'react'
 
-type BlogRouterCTX = Post[]
+const PostsContext = createContext<Post[]>([])
 
-const PostsContext = createContext<BlogRouterCTX>([])
-
-export const useBlogRouter = () => {
+export const usePosts = () => {
   const context = useContext(PostsContext)
   return context
 }
@@ -17,7 +15,7 @@ type PostsProviderProps = {
 }
 
 export const PostsProvider = ({ children, posts }: PostsProviderProps) => {
-  const [value] = useState<BlogRouterCTX | []>(posts)
+  const [value] = useState<Post[] | []>(posts)
 
   return <PostsContext.Provider value={value}>{children}</PostsContext.Provider>
 }

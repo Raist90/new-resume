@@ -2,8 +2,8 @@ import type { Post } from '@/types'
 import { Dialog, Transition } from '@headlessui/react'
 import clsx from 'clsx'
 import { Search } from 'lucide-react'
-import { Fragment, useState } from 'react'
-import { useBlogRouter } from '@/contexts'
+import { Fragment, useRef, useState } from 'react'
+import { usePosts } from '@/contexts'
 import { SearchButtonDialogResults } from './partials'
 import { getFilteredSearchResults } from './helpers'
 
@@ -16,7 +16,6 @@ type SearchButtonDialogProps = {
   }
 }
 
-/** @todo Dialog should reset search results when closed */
 export const SearchButtonDialog = ({
   isOpen,
   closeModal,
@@ -25,7 +24,7 @@ export const SearchButtonDialog = ({
   const { headerHeight, headerWidth } = headerRects
   const customInset = `${headerHeight}px 0 0 0`
 
-  const posts = useBlogRouter()
+  const posts = usePosts()
 
   const initialState = {
     Posts: true,
@@ -38,19 +37,20 @@ export const SearchButtonDialog = ({
     useState<keyof typeof initialState>('Posts')
   let [searchResult, setSearchResult] = useState<Post[]>([])
 
+  /** @todo Make sure to also add CMS pages here */
   const searchDialogButtonList = [
     { active: isActive['Posts'], label: 'Posts' },
     { active: isActive['Tags'], label: 'Tags' },
     { active: isActive['Projects'], label: 'Projects' },
   ]
 
-  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value
     const queryResults = getFilteredSearchResults(posts, searchCategory, query)
     setSearchResult(queryResults)
   }
 
-  /** @todo Ideally here when clicking a button the search results should be reset or even better we should update the results with the current query */
+  /** @todo Ideally here when clicking a button we should update the results with the current query */
   const onButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     const clickedButton = e.currentTarget.innerHTML as keyof typeof initialState
@@ -60,11 +60,18 @@ export const SearchButtonDialog = ({
     updatedState[clickedButton] = true
     setIsActive(updatedState)
     setSearchCategory(clickedButton)
+    resetSearchResults()
+    if (!inputRef.current) return
+    inputRef.current.value = ''
+    inputRef.current.focus()
   }
 
   const resetSearchResults = () => {
     setSearchResult([])
   }
+
+  // We use this to reset the search results when clicking on a new category
+  const inputRef = useRef<HTMLInputElement>(null)
 
   return (
     <>
@@ -108,6 +115,7 @@ export const SearchButtonDialog = ({
                       autoComplete='off'
                       className='h-full w-full focus:outline-none bg-inherit'
                       onChange={handleChange}
+                      ref={inputRef}
                       type='text'
                       name='search'
                       placeholder='Search anything...'
