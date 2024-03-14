@@ -3,22 +3,23 @@ import { Dialog, Transition } from '@headlessui/react'
 import clsx from 'clsx'
 import { Search } from 'lucide-react'
 import { Fragment, useState } from 'react'
-import { SearchResultsDialog } from '.'
+import { useBlogRouter } from '@/contexts'
+import { SearchButtonDialogResults } from './partials'
 
 type SearchButtonDialogProps = {
   isOpen: boolean
   closeModal: () => void
   headerHeight: number
-  posts: Post[]
 }
 
 export const SearchButtonDialog = ({
   isOpen,
   closeModal,
   headerHeight,
-  posts,
 }: SearchButtonDialogProps) => {
   const customInset = `${headerHeight}px 0 0 0`
+
+  const posts = useBlogRouter()
 
   const initialState = {
     Posts: true,
@@ -133,7 +134,7 @@ export const SearchButtonDialog = ({
                     ))}
                   </div>
 
-                  <SearchResultsDialog
+                  <SearchButtonDialogResults
                     closeModal={closeModal}
                     resetSearchResults={resetSearchResults}
                     searchResult={searchResult}

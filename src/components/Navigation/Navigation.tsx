@@ -14,7 +14,7 @@ const NavigationComponent = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-export const Primary = async ({ primary, posts }: NavigationType) => {
+export const Primary = async ({ primary }: NavigationType) => {
   return (
     <ul className='inline-flex gap-x-3 items-center w-max'>
       {primary.map((item) => {
@@ -26,7 +26,7 @@ export const Primary = async ({ primary, posts }: NavigationType) => {
           </li>
         )
       })}
-      <SearchButton posts={posts} />
+      <SearchButton />
       <ThemeSwitcher />
     </ul>
   )

@@ -1,14 +1,8 @@
 'use client'
 import { useEffect, useState } from 'react'
-import { Post } from '@/types'
 import { SearchButtonDialog } from './partials'
 
-type SearchButtonProps = {
-  posts: Post[]
-}
-
-/** @todo Fix this */
-export const SearchButton = ({ posts }: SearchButtonProps) => {
+export const SearchButton = () => {
   let [isOpen, setIsOpen] = useState(false)
   let [headerHeight, setHeaderHeight] = useState(0)
 
@@ -34,7 +28,6 @@ export const SearchButton = ({ posts }: SearchButtonProps) => {
         isOpen={isOpen}
         closeModal={closeModal}
         headerHeight={headerHeight}
-        posts={posts}
       />
     </>
   )

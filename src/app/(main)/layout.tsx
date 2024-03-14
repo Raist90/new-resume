@@ -1,4 +1,5 @@
 import { Navigation } from '@/components'
+import { PostsProvider } from '@/contexts'
 import { CMSRouter } from '@/routers/CMSRouter'
 import { blogRouter } from '@/routers/blogRouter'
 
@@ -13,7 +14,9 @@ export default async function MainLayout({
   return (
     <main className='grid p-8'>
       <Navigation>
-        <Navigation.Primary primary={primary} posts={posts} />
+        <PostsProvider posts={posts}>
+          <Navigation.Primary primary={primary} posts={posts} />
+        </PostsProvider>
       </Navigation>
       {children}
     </main>

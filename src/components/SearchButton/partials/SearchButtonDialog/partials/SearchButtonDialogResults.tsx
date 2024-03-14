@@ -3,17 +3,17 @@ import type { Post } from '@/types'
 import Link from 'next/link'
 import { getLinkAriaLabel } from '@/helpers/accessibility'
 
-type SearchResultsDialogProps = {
+type SearchButtonDialogResultsProps = {
   closeModal: () => void
   resetSearchResults: () => void
   searchResult: Post[] | []
 }
 
-export const SearchResultsDialog = ({
+export const SearchButtonDialogResults = ({
   closeModal,
   resetSearchResults,
   searchResult: posts,
-}: SearchResultsDialogProps) => {
+}: SearchButtonDialogResultsProps) => {
   const handleClick = () => {
     closeModal()
     resetSearchResults()
