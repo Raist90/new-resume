@@ -2,18 +2,30 @@ import type { Post } from '@/types'
 import { Dialog, Transition } from '@headlessui/react'
 import clsx from 'clsx'
 import { Search } from 'lucide-react'
-import { Fragment, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import { usePosts } from '@/contexts'
 import { SearchButtonDialogResults } from './partials'
 import { getFilteredSearchResults } from './helpers'
+import type { SearchButtonDialogProps } from '.'
 
-type SearchButtonDialogProps = {
-  isOpen: boolean
-  closeModal: () => void
-  headerRects: {
-    headerHeight: number
-    headerWidth: number
-  }
+const activeCategory = {
+  Posts: true,
+  Tags: false,
+  Projects: false,
+}
+
+type SearchInitialState = {
+  isActive: typeof activeCategory
+  searchCategory: keyof typeof activeCategory
+  searchResult: Post[]
+  searchQuery: string
+}
+
+const searchInitialState: SearchInitialState = {
+  isActive: activeCategory,
+  searchCategory: 'Posts',
+  searchResult: [],
+  searchQuery: '',
 }
 
 export const SearchButtonDialog = ({
@@ -26,16 +38,10 @@ export const SearchButtonDialog = ({
 
   const posts = usePosts()
 
-  const initialState = {
-    Posts: true,
-    Tags: false,
-    Projects: false,
-  }
+  /** @todo Probably it makes more sens to use `useReducer` here */
+  let [searchState, setSearchState] = useState(searchInitialState)
 
-  let [isActive, setIsActive] = useState<typeof initialState>(initialState)
-  let [searchCategory, setSearchCategory] =
-    useState<keyof typeof initialState>('Posts')
-  let [searchResult, setSearchResult] = useState<Post[]>([])
+  const { isActive, searchCategory, searchResult, searchQuery } = searchState
 
   /** @todo Make sure to also add CMS pages here */
   const searchDialogButtonList = [
@@ -46,28 +52,45 @@ export const SearchButtonDialog = ({
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value
-    const queryResults = getFilteredSearchResults(posts, searchCategory, query)
-    setSearchResult(queryResults)
+    setSearchState((prevState) => ({ ...prevState, searchQuery: query }))
   }
 
-  /** @todo Ideally here when clicking a button we should update the results with the current query */
+  useEffect(() => {
+    const queryResults = getFilteredSearchResults(
+      posts,
+      searchCategory,
+      searchQuery,
+    )
+    setSearchState((prevState) => ({
+      ...prevState,
+      searchResult: queryResults,
+    }))
+  }, [searchQuery, searchCategory, posts])
+
   const onButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    const clickedButton = e.currentTarget.innerHTML as keyof typeof initialState
+
+    const clickedButton = e.currentTarget
+      .innerHTML as keyof typeof activeCategory
+
     const updatedState = Object.fromEntries(
       searchDialogButtonList.map((button) => [button.label, false]),
-    ) as typeof initialState
+    ) as typeof activeCategory
+
     updatedState[clickedButton] = true
-    setIsActive(updatedState)
-    setSearchCategory(clickedButton)
-    resetSearchResults()
+
+    setSearchState((prevState) => ({
+      ...prevState,
+      isActive: updatedState,
+      searchCategory: clickedButton,
+    }))
+
     if (!inputRef.current) return
-    inputRef.current.value = ''
     inputRef.current.focus()
   }
 
   const resetSearchResults = () => {
-    setSearchResult([])
+    setSearchState((prevState) => ({ ...prevState, searchResult: [] }))
   }
 
   // We use this to reset the search results when clicking on a new category

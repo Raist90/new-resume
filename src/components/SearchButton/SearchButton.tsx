@@ -17,8 +17,8 @@ export const SearchButton = () => {
   const closeModal = () => setIsOpen(false)
 
   useEffect(() => {
-    /** @todo What if we have more then an element with role navigation? Better be more specific */
-    const header = document.querySelectorAll('[role="navigation"]').item(0)
+    /** @todo What if we have more then an element with role `menubar`? Better be more specific */
+    const header = document.querySelectorAll('[role="menubar"]').item(0)
     const headerRects = header.getClientRects().item(0)
     const headerHeight = Math.round(Number(headerRects?.bottom))
     const headerWidth = Math.round(Number(headerRects?.width))

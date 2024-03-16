@@ -30,7 +30,11 @@ export const ThemeSwitcher = () => {
 
   return (
     <button type='button' onClick={toggleTheme} className='block'>
-      {theme === 'light' ? <Moon /> : <Sun />}
+      {theme === 'light' ? (
+        <Moon aria-label='Dark mode' />
+      ) : (
+        <Sun aria-label='Light mode' />
+      )}
     </button>
   )
 }

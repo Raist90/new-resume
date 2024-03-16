@@ -1,4 +1,9 @@
-/** @todo Figure out if it's best to get rid of this */
+import { ThemeSwitcher } from '@/components'
+
 export const Secondary = () => {
-  return null
+  return (
+    <ul role='menu'>
+      <ThemeSwitcher />
+    </ul>
+  )
 }

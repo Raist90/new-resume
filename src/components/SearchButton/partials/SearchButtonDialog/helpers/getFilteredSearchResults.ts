@@ -4,7 +4,7 @@ const getResultsByPosts = (posts: Post[], query: string) => {
   const result = posts.filter(
     ({ title }) =>
       query.length > 0 &&
-      [title].some((str) => str.toLowerCase().includes(query)),
+      [title].some((str) => str.toLowerCase().includes(query.toLowerCase())),
   )
   return result
 }
@@ -12,7 +12,7 @@ const getResultsByPosts = (posts: Post[], query: string) => {
 const getResultsByTags = (posts: Post[], query: string) => {
   const result = posts.filter((post) =>
     post.tags.some(
-      (tag) => tag === query || (query.length > 0 && tag.includes(query)),
+      (tag) => query.length > 0 && tag.includes(query.toLowerCase()),
     ),
   )
   return result

@@ -3,8 +3,7 @@ import { blogRouter } from '@/routers/blogRouter'
 
 export const generateStaticParams = async () => {
   const allPosts = await blogRouter.fetch.allPosts()
-  /** @todo A little bit ugly, change this */
-  return allPosts.flatMap((post) => post.tags.map((tag) => ({ tag })))
+  return allPosts.flatMap(({ tags }) => tags.map((tag) => ({ tag })))
 }
 
 const TagPage = async ({ params }: { params: { tag: string } }) => {
