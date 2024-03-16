@@ -90,7 +90,7 @@ export const SearchButtonDialog = ({
   }
 
   const resetSearchResults = () => {
-    setSearchState((prevState) => ({ ...prevState, searchResult: [] }))
+    setSearchState((prevState) => ({ ...prevState, searchQuery: '' }))
   }
 
   // We use this to reset the search results when clicking on a new category

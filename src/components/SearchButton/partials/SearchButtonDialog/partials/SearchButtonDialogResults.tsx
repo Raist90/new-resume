@@ -19,8 +19,8 @@ export const SearchButtonDialogResults = ({
 
   const handleClick = (slug: string) => {
     closeModal()
-    resetSearchResults()
     push(`/posts/${slug}`)
+    resetSearchResults()
   }
 
   return (
