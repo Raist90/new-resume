@@ -19,7 +19,7 @@ const config: Config = {
         darkBGPrimary: 'var(--dark-color)',
         darkTextPrimary: 'var(--dark-text-color)',
         darkAccent: 'var(--dark-accent-color)',
-        lightBGPrimary: 'var(--ligth-color)',
+        lightBGPrimary: 'var(--light-color)',
         lightTextPrimary: 'var(--light-text-color)',
         lightAccent: 'var(--light-accent-color)',
       },

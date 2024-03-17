@@ -16,20 +16,24 @@ export const Profile = ({ profile }: ProfileProps) => {
     <section
       style={{ background: `url('${bg.src}') repeat` }}
       aria-labelledby={profileTitle}
-      className='grid border border-gray-200 dark:border-gray-600 p-4 relative gap-8'
+      className='grid border border-gray-600 p-4 relative gap-8'
     >
-      <div className='grid lg:grid-cols-2 gap-4 text-balance'>
-        <hgroup>
-          <h2 id={profileTitle} className='text-3xl'>
-            {name}
-          </h2>
-          <h3 className='text-2xl'>{role}</h3>
-          <p className='text-xs'>{motto}</p>
-        </hgroup>
-
-        <div className='relative aspect-square h-[200px]'>
+      <div className='flex flex-col lg:flex-row gap-4 lg:items-center'>
+        <div className='w-fit relative aspect-square h-[200px]'>
           <Media image={picture} options={'rounded-full'} />
         </div>
+
+        <hgroup>
+          <h2 id={profileTitle} className='text-3xl mb-0'>
+            {name}
+          </h2>
+
+          <h3 className='uppercase mb-0'>{role}</h3>
+
+          <p className='text-xs'>{motto}</p>
+
+          <PortableText value={bio} />
+        </hgroup>
       </div>
 
       <div
@@ -40,11 +44,7 @@ export const Profile = ({ profile }: ProfileProps) => {
         className='absolute inset-0 z-[-2]'
       />
 
-      <div>
-        <PortableText value={bio} />
-      </div>
-
-      <section aria-labelledby={expertiseTitle} className='text-sm'>
+      <div aria-labelledby={expertiseTitle} className='text-sm'>
         <header id={expertiseTitle}>
           <h4 className='text-2xl'>Expertise</h4>
         </header>
@@ -52,7 +52,7 @@ export const Profile = ({ profile }: ProfileProps) => {
           <ul className='flex flex-wrap gap-3'>
             {expertiseLabels.map((label) => (
               <li
-                className='border border-lightAccent dark:border-darkAccent p-2'
+                className='border border-lightAccent dark:border-gray-600 p-2 bg-lightBGPrimary dark:bg-darkBGPrimary'
                 key={label}
               >
                 {label}
@@ -60,7 +60,7 @@ export const Profile = ({ profile }: ProfileProps) => {
             ))}
           </ul>
         </div>
-      </section>
+      </div>
     </section>
   )
 }

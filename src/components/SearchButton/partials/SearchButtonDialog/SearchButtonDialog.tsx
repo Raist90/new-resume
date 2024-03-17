@@ -123,7 +123,7 @@ export const SearchButtonDialog = ({
                 leaveFrom='opacity-100 scale-100'
                 leaveTo='opacity-0 scale-95'
               >
-                <Dialog.Panel className='w-full md:w-1/2 mt-4 transform overflow-hidden bg-white shadow-xl transition-all bg-lightBGPrimary dark:bg-darkBGPrimary border border-gray-200 dark:border-gray-600 rounded-lg'>
+                <Dialog.Panel className='w-full md:w-1/2 mt-4 transform overflow-hidden bg-white shadow-xl transition-all bg-lightBGPrimary dark:bg-darkBGPrimary border border-gray-600 rounded-lg'>
                   <div className='flex h-10 gap-2 p-2'>
                     <div className='h-full flex items-center'>
                       <Search size={16} />
@@ -138,14 +138,14 @@ export const SearchButtonDialog = ({
                       placeholder='Search anything...'
                     />
                   </div>
-                  <div className='text-xs p-2 border-t border-gray-200 dark:border-gray-600 h-10 flex gap-1'>
+                  <div className='text-xs p-2 border-t border-gray-600 h-10 flex gap-1'>
                     {searchDialogButtonList.map((button) => (
                       <button
                         key={button.label}
                         type='button'
                         className={clsx(
                           button.active && 'bg-gray-200 dark:bg-black',
-                          'border px-2 rounded-lg border-gray-200 dark:border-gray-600',
+                          'border px-2 rounded-lg border-gray-600',
                         )}
                         onClick={onButtonClick}
                       >

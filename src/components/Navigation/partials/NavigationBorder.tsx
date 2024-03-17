@@ -21,7 +21,7 @@ export const NavigationBorder = () => {
     <div
       className={clsx(
         !isSticky && `hidden`,
-        `border-b border-gray-200 dark:border-gray-600 absolute top-0 left-0 bottom-0 w-full`,
+        `border-b border-gray-600 absolute top-0 left-0 bottom-0 w-full`,
       )}
     />
   )
