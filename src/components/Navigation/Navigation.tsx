@@ -20,7 +20,7 @@ const NavigationComponent = ({ children }: { children: React.ReactNode }) => {
 
 export const Primary = ({ primary }: NavigationType) => {
   return (
-    <nav role='navigation'>
+    <nav role='navigation' className='z-50'>
       <ul className='inline-flex gap-x-3 items-center w-max'>
         {primary.map((item) => {
           const isHomepage = item.url === '/homepage'
