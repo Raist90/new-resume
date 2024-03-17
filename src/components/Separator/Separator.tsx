@@ -3,7 +3,5 @@ type SeparatorProps = {
 }
 
 export const Separator: React.FC<SeparatorProps> = ({ className }) => {
-  return (
-    <hr className={`border-lightAccent dark:border-darkAccent ${className}`} />
-  )
+  return <hr className={`border-gray-600 ${className}`} />
 }

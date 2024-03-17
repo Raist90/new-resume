@@ -10,7 +10,7 @@ const Homepage = async () => {
 
   return (
     <>
-      <div className='md:w-10/12 lg:w-1/2 mx-auto grid gap-2'>
+      <div className='md:w-10/12 lg:w-1/2 mx-auto grid'>
         <Profile profile={profile} />
         <LatestPosts posts={latestPosts} />
         <Roadmap workExperience={workExperience} />

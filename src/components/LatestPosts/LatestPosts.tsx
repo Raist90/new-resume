@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Media, Separator } from '..'
+import { Media } from '..'
 import type { Post } from '@/types'
 import { useId } from 'react'
 import { getLinkAriaLabel } from '@/helpers/accessibility'
@@ -12,14 +12,13 @@ type LatestPostsProps = {
 export const LatestPosts = ({ posts, ...rest }: LatestPostsProps) => {
   const titleId = useId()
   return (
-    <section aria-labelledby={titleId} {...rest}>
+    <section className='py-8 px-4' aria-labelledby={titleId} {...rest}>
       <header id={titleId}>
         <h2 className='text-2xl'>Latest posts</h2>
       </header>
 
       <div className='grid gap-2'>
-        {posts.map((post, index) => {
-          const isLastIndex = index === posts.length - 1
+        {posts.map((post) => {
           return (
             <div key={post.slug}>
               <Link
@@ -37,8 +36,6 @@ export const LatestPosts = ({ posts, ...rest }: LatestPostsProps) => {
                   </div>
                 </div>
               </Link>
-
-              {!isLastIndex && <Separator className='my-2' />}
             </div>
           )
         })}

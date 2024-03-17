@@ -16,7 +16,7 @@ export const Profile = ({ profile }: ProfileProps) => {
     <section
       style={{ background: `url('${bg.src}') repeat` }}
       aria-labelledby={profileTitle}
-      className='grid border border-gray-600 p-4 relative gap-8'
+      className='grid border border-gray-600 py-8 px-4 relative gap-8'
     >
       <div className='flex flex-col lg:flex-row gap-4 lg:items-center'>
         <div className='w-fit relative aspect-square h-[200px]'>
@@ -44,7 +44,7 @@ export const Profile = ({ profile }: ProfileProps) => {
         className='absolute inset-0 z-[-2]'
       />
 
-      <div aria-labelledby={expertiseTitle} className='text-sm'>
+      <div aria-labelledby={expertiseTitle} className='text-xs'>
         <header id={expertiseTitle}>
           <h4 className='text-2xl'>Expertise</h4>
         </header>
@@ -52,7 +52,7 @@ export const Profile = ({ profile }: ProfileProps) => {
           <ul className='flex flex-wrap gap-3'>
             {expertiseLabels.map((label) => (
               <li
-                className='border border-lightAccent dark:border-gray-600 p-2 bg-lightBGPrimary dark:bg-darkBGPrimary'
+                className='border border-gray-600 p-2 bg-lightBGPrimary dark:bg-darkBGPrimary'
                 key={label}
               >
                 {label}
