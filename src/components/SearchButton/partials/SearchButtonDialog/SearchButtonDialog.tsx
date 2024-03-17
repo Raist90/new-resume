@@ -31,14 +31,12 @@ const searchInitialState: SearchInitialState = {
 export const SearchButtonDialog = ({
   isOpen,
   closeModal,
-  headerRects,
+  headerHeight,
 }: SearchButtonDialogProps) => {
-  const { headerHeight, headerWidth } = headerRects
   const customInset = `${headerHeight}px 0 0 0`
 
   const posts = usePosts()
 
-  /** @todo Probably it makes more sens to use `useReducer` here */
   let [searchState, setSearchState] = useState(searchInitialState)
 
   const { isActive, searchCategory, searchResult, searchQuery } = searchState
@@ -93,7 +91,6 @@ export const SearchButtonDialog = ({
     setSearchState((prevState) => ({ ...prevState, searchQuery: '' }))
   }
 
-  // We use this to reset the search results when clicking on a new category
   const inputRef = useRef<HTMLInputElement>(null)
 
   return (
@@ -126,10 +123,7 @@ export const SearchButtonDialog = ({
                 leaveFrom='opacity-100 scale-100'
                 leaveTo='opacity-0 scale-95'
               >
-                <Dialog.Panel
-                  style={{ width: headerWidth }}
-                  className='transform overflow-hidden bg-white shadow-xl transition-all bg-lightBGPrimary dark:bg-darkBGPrimary border border-gray-200 dark:border-gray-600 rounded-lg'
-                >
+                <Dialog.Panel className='w-full md:w-1/2 mt-4 transform overflow-hidden bg-white shadow-xl transition-all bg-lightBGPrimary dark:bg-darkBGPrimary border border-gray-200 dark:border-gray-600 rounded-lg'>
                   <div className='flex h-10 gap-2 p-2'>
                     <div className='h-full flex items-center'>
                       <Search size={16} />

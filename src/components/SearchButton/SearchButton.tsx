@@ -2,16 +2,9 @@
 import { useEffect, useState } from 'react'
 import { SearchButtonDialog } from './partials'
 
-const headerRectsInitialState = {
-  headerHeight: 0,
-  headerWidth: 0,
-}
-
 export const SearchButton = () => {
   let [isOpen, setIsOpen] = useState(false)
-  let [headerRects, setHeaderRects] = useState<typeof headerRectsInitialState>(
-    headerRectsInitialState,
-  )
+  let [headerHeight, setHeaderHeight] = useState(0)
 
   const openModal = () => setIsOpen(true)
   const closeModal = () => setIsOpen(false)
@@ -21,13 +14,9 @@ export const SearchButton = () => {
     const header = document.querySelectorAll('[role="menubar"]').item(0)
     const headerRects = header.getClientRects().item(0)
     const headerHeight = Math.round(Number(headerRects?.bottom))
-    const headerWidth = Math.round(Number(headerRects?.width))
-    setHeaderRects({
-      headerHeight,
-      headerWidth,
-    })
+    setHeaderHeight(headerHeight)
     return () => {
-      setHeaderRects(headerRectsInitialState)
+      setHeaderHeight(0)
     }
   }, [])
   return (
@@ -38,7 +27,7 @@ export const SearchButton = () => {
       <SearchButtonDialog
         isOpen={isOpen}
         closeModal={closeModal}
-        headerRects={headerRects}
+        headerHeight={headerHeight}
       />
     </>
   )
