@@ -30,6 +30,8 @@ export const Profile = ({ profile }: ProfileProps) => {
           <p className='text-xs'>{motto}</p>
 
           <PortableText value={bio} />
+
+          <p className='text-xs'>I speak italian, spanish and english</p>
         </hgroup>
       </div>
 

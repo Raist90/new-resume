@@ -1,0 +1,19 @@
+---
+title: "Type and parse your environment variables with Zod"
+date: "2023-03-19"
+tags: "coding, next, typescript, zod"
+excerpt: "I wanted to write a few words about how this website is made and why I chose to do it this way."
+cover: "/how-this-website-is-made.jpeg"
+alt: "Code on a screen"
+---
+If you ever worked with environment variables in a TypeScript project, you probably know that it can be a bit of a pain to handle them.
+
+How many times you had to write something like this?
+
+```typescript
+const PORT = process.env.PORT as string;
+```
+
+Every time you access an environment variable, you have to cast it to the correct type. This is not only error-prone but also makes your code harder to read and maintain, especially when having lot of environment variables.
+
+This is where Zod comes in. Zod is a TypeScript-first schema declaration and validation library. It allows you to define the types for your environment variables and parse them from the environment in a single step. Let's see how it works.
