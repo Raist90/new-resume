@@ -12,7 +12,7 @@ type LatestPostsProps = {
 export const LatestPosts = ({ posts, ...rest }: LatestPostsProps) => {
   const titleId = useId()
   return (
-    <section className='py-8 px-4' aria-labelledby={titleId} {...rest}>
+    <section className='px-4' aria-labelledby={titleId} {...rest}>
       <header id={titleId}>
         <h2 className='text-2xl'>Latest posts</h2>
       </header>

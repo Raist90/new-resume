@@ -8,7 +8,7 @@ export const Roadmap = ({ workExperience }: RoadmapProps) => {
   const { title, companies } = workExperience
   const titleId = useId()
   return (
-    <section aria-labelledby={titleId} className='grid py-8 px-4'>
+    <section aria-labelledby={titleId} className='grid px-4'>
       <div className='flex flex-col'>
         <header id={titleId}>
           <h2 className='text-3xl'>{title}</h2>
