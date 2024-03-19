@@ -20,7 +20,7 @@ export const Roadmap = ({ workExperience }: RoadmapProps) => {
                 <h3 id={id} className='text-2xl'>
                   {name}
                 </h3>
-                <p className='text-xl'>{role}</p>
+                <p className='uppercase mb-1'>{role}</p>
                 {isCurrent ? (
                   <p className='text-xs'>{from} - Current</p>
                 ) : (

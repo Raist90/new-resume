@@ -3,8 +3,6 @@ import { PortableText } from '@portabletext/react'
 import type { HomepageProps } from '@/types'
 import { expertiseLabels } from '@/constants'
 import { useId } from 'react'
-/** @todo Fix this ugly import */
-import bg from '../../../public/body-bg.png'
 
 type ProfileProps = Pick<HomepageProps, 'profile'>
 
@@ -14,9 +12,8 @@ export const Profile = ({ profile }: ProfileProps) => {
   const expertiseTitle = useId()
   return (
     <section
-      style={{ background: `url('${bg.src}') repeat` }}
       aria-labelledby={profileTitle}
-      className='grid border border-gray-600 py-8 px-4 relative gap-8'
+      className='grid py-8 px-4 relative gap-8'
     >
       <div className='flex flex-col lg:flex-row gap-4 lg:items-center'>
         <div className='w-fit relative aspect-square h-[200px]'>
@@ -24,7 +21,7 @@ export const Profile = ({ profile }: ProfileProps) => {
         </div>
 
         <hgroup>
-          <h2 id={profileTitle} className='text-3xl mb-0'>
+          <h2 id={profileTitle} className='text-3xl mb-2'>
             {name}
           </h2>
 
@@ -35,14 +32,6 @@ export const Profile = ({ profile }: ProfileProps) => {
           <PortableText value={bio} />
         </hgroup>
       </div>
-
-      <div
-        style={{
-          background:
-            'radial-gradient(ellipse, rgba(255, 255, 255, .2) 10%, transparent',
-        }}
-        className='absolute inset-0 z-[-2]'
-      />
 
       <div aria-labelledby={expertiseTitle} className='text-xs'>
         <header id={expertiseTitle}>
