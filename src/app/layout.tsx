@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import './atom-one-dark.css'
 import { dmMono, dmSans } from '@/fonts'
 
 export const metadata: Metadata = {

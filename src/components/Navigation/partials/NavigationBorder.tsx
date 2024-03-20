@@ -2,6 +2,7 @@
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
 
+/** @todo There's a bug here. It will not show the border when reloading a page without scrolling. */
 export const NavigationBorder = () => {
   let [isSticky, setIsSticky] = useState(false)
 
