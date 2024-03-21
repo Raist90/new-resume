@@ -1,4 +1,4 @@
-import { Navigation } from '@/components'
+import { Footer, Navigation } from '@/components'
 import { PostsProvider } from '@/contexts'
 import { CMSRouter } from '@/routers/CMSRouter'
 import { blogRouter } from '@/routers/blogRouter'
@@ -19,6 +19,7 @@ export default async function MainLayout({
         </PostsProvider>
       </Navigation>
       <main className='grid py-8 px-4'>{children}</main>
+      <Footer />
     </>
   )
 }
