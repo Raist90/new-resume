@@ -1,4 +1,5 @@
 export * from './homepageQuery'
 export * from './navigationQuery'
+export * from './projectPageListQuery'
 export * from './projectPageQuery'
 export * from './projectPageSlugListQuery'

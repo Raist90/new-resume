@@ -1,12 +1,14 @@
 import {
   homepageQuery,
   navigationQuery,
+  projectPageListQuery,
   projectPageQuery,
   projectPageSlugListQuery,
 } from '@/api'
 import {
   homepageSchema,
   navigationSchema,
+  projectPageListSchema,
   projectPageSchema,
   projectPageSlugListSchema,
 } from '@/types'
@@ -31,6 +33,11 @@ export const documentMap = {
     queryParams: z.object({
       slug: z.string(),
     }),
+  },
+  projectPageList: {
+    query: projectPageListQuery,
+    schema: projectPageListSchema,
+    hasQueryParams: false,
   },
   projectPageSlugList: {
     query: projectPageSlugListQuery,

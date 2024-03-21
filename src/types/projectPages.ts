@@ -26,8 +26,18 @@ export const projectPageSchema = z.object({
   ),
 })
 
+// We omit the blocks field because we don't need it in the list view
+export const projectPageListSchema = z.array(
+  z.object({
+    ...projectPageSchema.omit({ blocks: true }).shape,
+    slug: z.string(),
+  }),
+)
+
 export const projectPageSlugListSchema = z.array(
   z.object({
     slug: z.string(),
   }),
 )
+
+export type ProjectCard = z.infer<typeof projectPageListSchema>[number]

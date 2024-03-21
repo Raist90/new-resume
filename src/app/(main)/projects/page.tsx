@@ -1,15 +1,16 @@
-import { PostCard } from '@/components'
-import { blogRouter } from '@/routers/blogRouter'
+import { ProjectCard } from '@/components'
+import { CMSRouter } from '@/routers/CMSRouter'
 
-const PostsPage = async () => {
-  const allPosts = await blogRouter.fetch.allPosts()
+const ProjectsPage = async () => {
+  const allProjects = await CMSRouter.fetch.projectPageList()
+  console.log('allProjects', allProjects)
   return (
     <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-      {allPosts.map((post) => (
-        <PostCard key={post.title} post={post} />
+      {allProjects.map((project) => (
+        <ProjectCard key={project.title} project={project} />
       ))}
     </section>
   )
 }
 
-export default PostsPage
+export default ProjectsPage

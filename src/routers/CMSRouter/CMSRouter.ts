@@ -63,6 +63,7 @@ export const CMSRouter = {
     navigation: async () => await fetchCMSData('navigation'),
     projectPage: async (slug: string) =>
       await fetchCMSData('projectPage', { slug }),
+    projectPageList: async () => await fetchCMSData('projectPageList'),
     projectPageSlugList: async () => await fetchCMSData('projectPageSlugList'),
   },
 }
