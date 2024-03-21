@@ -1,45 +1,7 @@
-import {
-  homepageQuery,
-  navigationQuery,
-  projectPageSlugListQuery,
-  projectPageQuery,
-} from '@/api'
 import { client } from '@/sanity/lib/client'
-import {
-  homepageSchema,
-  navigationSchema,
-  projectPageSchema,
-  projectPageSlugListSchema,
-} from '@/types'
 import { notFound } from 'next/navigation'
 import z from 'zod'
-
-/** @description Map of all documents in the CMS. Add all the other documents here. */
-const documentMap = {
-  homepage: {
-    query: homepageQuery,
-    schema: homepageSchema,
-    hasQueryParams: false,
-  },
-  navigation: {
-    query: navigationQuery,
-    schema: navigationSchema,
-    hasQueryParams: false,
-  },
-  projectPage: {
-    query: projectPageQuery,
-    schema: projectPageSchema,
-    hasQueryParams: true,
-    queryParams: z.object({
-      slug: z.string(),
-    }),
-  },
-  projectPageSlugList: {
-    query: projectPageSlugListQuery,
-    schema: projectPageSlugListSchema,
-    hasQueryParams: false,
-  },
-}
+import { documentMap } from './documentMap'
 
 async function fetchCMSData<
   T extends Exclude<keyof typeof documentMap, 'projectPage'>,
