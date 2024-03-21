@@ -26,7 +26,7 @@ export const projectPageSchema = z.object({
   ),
 })
 
-export const projectPageListSchema = z.array(
+export const projectPageSlugListSchema = z.array(
   z.object({
     slug: z.string(),
   }),

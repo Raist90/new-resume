@@ -1,15 +1,15 @@
 import {
   homepageQuery,
   navigationQuery,
-  projectPageListQuery,
+  projectPageSlugListQuery,
   projectPageQuery,
 } from '@/api'
 import { client } from '@/sanity/lib/client'
 import {
   homepageSchema,
   navigationSchema,
-  projectPageListSchema,
   projectPageSchema,
+  projectPageSlugListSchema,
 } from '@/types'
 import { notFound } from 'next/navigation'
 import z from 'zod'
@@ -34,9 +34,9 @@ const documentMap = {
       slug: z.string(),
     }),
   },
-  projectPageList: {
-    query: projectPageListQuery,
-    schema: projectPageListSchema,
+  projectPageSlugList: {
+    query: projectPageSlugListQuery,
+    schema: projectPageSlugListSchema,
     hasQueryParams: false,
   },
 }
@@ -101,6 +101,6 @@ export const CMSRouter = {
     navigation: async () => await fetchCMSData('navigation'),
     projectPage: async (slug: string) =>
       await fetchCMSData('projectPage', { slug }),
-    projectPageList: async () => await fetchCMSData('projectPageList'),
+    projectPageSlugList: async () => await fetchCMSData('projectPageSlugList'),
   },
 }
