@@ -1,6 +1,7 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { SearchButtonDialog } from './partials'
+import { useEffectOnce } from '@/helpers/hooks'
 
 export const SearchButton = () => {
   let [isOpen, setIsOpen] = useState(false)
@@ -9,7 +10,7 @@ export const SearchButton = () => {
   const openModal = () => setIsOpen(true)
   const closeModal = () => setIsOpen(false)
 
-  useEffect(() => {
+  useEffectOnce(() => {
     /** @todo What if we have more then an element with role `menubar`? Better be more specific */
     const header = document.querySelectorAll('[role="menubar"]').item(0)
     const headerRects = header.getClientRects().item(0)
@@ -18,7 +19,7 @@ export const SearchButton = () => {
     return () => {
       setHeaderHeight(0)
     }
-  }, [])
+  })
   return (
     <>
       <button onClick={openModal} type='button' className='block'>

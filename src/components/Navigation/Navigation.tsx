@@ -2,14 +2,17 @@
 import { dmMono } from '@/fonts'
 import { Primary, Secondary } from './partials'
 import clsx from 'clsx'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import { useEffectOnce } from '@/helpers/hooks'
 
 /** @todo This is not an arrow function because of a weird `Next bug`.
  * Check this one and change it once it's fixed: https://github.com/vercel/next.js/issues/58778 */
 export function Navigation() {
   const [isSticky, setIsSticky] = useState(false)
 
-  useEffect(() => {
+  useEffectOnce(() => {
+    if (window.scrollY > 0) setIsSticky(true)
+
     const handleScroll = () => {
       setIsSticky(window.scrollY > 0)
     }
@@ -19,7 +22,7 @@ export function Navigation() {
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
-  }, [])
+  })
 
   return (
     <div
