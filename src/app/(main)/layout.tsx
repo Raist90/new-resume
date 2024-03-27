@@ -1,5 +1,5 @@
 import { Footer, Navigation } from '@/components'
-import { PostsProvider } from '@/contexts'
+import { NavigationProvider, PostsProvider } from '@/contexts'
 import { CMSRouter } from '@/routers/CMSRouter'
 import { blogRouter } from '@/routers/blogRouter'
 
@@ -8,16 +8,15 @@ export default async function MainLayout({
 }: {
   children: React.ReactNode
 }) {
-  const { primary } = await CMSRouter.fetch.navigation()
+  const navigation = await CMSRouter.fetch.navigation()
   const posts = await blogRouter.fetch.allPosts()
   return (
     <>
-      <Navigation>
-        <PostsProvider posts={posts}>
-          <Navigation.Primary primary={primary} />
-          <Navigation.Secondary />
-        </PostsProvider>
-      </Navigation>
+      <PostsProvider posts={posts}>
+        <NavigationProvider navigation={navigation}>
+          <Navigation />
+        </NavigationProvider>
+      </PostsProvider>
       <main className='grid py-8 px-4'>{children}</main>
       <Footer />
     </>

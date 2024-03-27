@@ -1,5 +1,5 @@
 'use client'
-import { Post } from '@/types'
+import type { Post } from '@/types'
 import { createContext, useContext, useState } from 'react'
 
 const PostsContext = createContext<Post[]>([])
