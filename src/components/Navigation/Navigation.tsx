@@ -28,7 +28,7 @@ export function Navigation() {
     <div
       className={clsx(
         isSticky && 'border-b border-gray-600',
-        'sticky z-50 top-0 backdrop-blur-md',
+        'sticky z-50 top-0 backdrop-blur-md bg-white/50 dark:bg-transparent',
       )}
     >
       <menu
