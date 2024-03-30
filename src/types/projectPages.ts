@@ -31,6 +31,7 @@ export const projectPageListSchema = z.array(
   z.object({
     ...projectPageSchema.omit({ blocks: true }).shape,
     slug: z.string(),
+    type: z.literal('projectPage'),
   }),
 )
 

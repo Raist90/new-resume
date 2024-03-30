@@ -1,12 +1,12 @@
 import { Media } from '@/components/Media'
-import type { Post } from '@/types'
+import type { SearchableItem } from '@/types'
 import { getLinkAriaLabel } from '@/helpers/accessibility'
 import { useRouter } from 'next/navigation'
 
 type SearchButtonDialogResultsProps = {
   closeModal: () => void
   resetSearchResults: () => void
-  searchResult: Post[] | []
+  searchResult: SearchableItem[]
 }
 
 /** @todo Double check accessibility here since we are wrapping everything in a button */
@@ -17,30 +17,32 @@ export const SearchButtonDialogResults = ({
 }: SearchButtonDialogResultsProps) => {
   const { push } = useRouter()
 
-  const handleClick = (slug: string) => {
+  const handleClick = (slug: string, type: string) => {
     closeModal()
-    push(`/posts/${slug}`)
+    if (type === 'projectPage') push(`/projects/${slug}`)
+    else push(`/posts/${slug}`)
     resetSearchResults()
   }
 
   return (
     <div className='grid gap-2'>
       {items.map((item) => {
+        const { cover, excerpt, slug, title, type } = item
         return (
-          <div key={item.slug}>
+          <div key={slug}>
             <button
               className='text-start w-full'
-              onClick={() => handleClick(item.slug)}
-              aria-label={getLinkAriaLabel(item.title)}
+              onClick={() => handleClick(slug, type)}
+              aria-label={getLinkAriaLabel(title)}
             >
               <div className='flex lg:items-center gap-4 p-2'>
                 <div className='relative aspect-square w-[60px] h-[60px]'>
-                  <Media image={item.cover} options={'rounded-sm'} />
+                  <Media image={cover} options={'rounded-sm'} />
                 </div>
 
                 <div>
-                  <h3 className='mb-0 uppercase'>{item.title}</h3>
-                  <p className='text-sm'>{item.excerpt}</p>
+                  <h3 className='mb-0 uppercase'>{title}</h3>
+                  <p className='text-sm'>{excerpt}</p>
                 </div>
               </div>
             </button>

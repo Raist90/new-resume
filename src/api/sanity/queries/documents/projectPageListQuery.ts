@@ -6,6 +6,7 @@ export const projectPageListQuery = `
       alt,
       'src': cover.asset->url
     },
-    'slug': slug.current
+    'slug': slug.current,
+    'type': _type
   }
 `

@@ -10,6 +10,7 @@ export const postSchema = z.object({
   tags: z.array(z.string()),
   excerpt: z.string(),
   slug: z.string(),
+  type: z.string(),
 })
 
 export const frontmatterSchema = z.object({

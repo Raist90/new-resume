@@ -1,12 +1,13 @@
-import type { Post } from '@/types'
+import type { SearchableItem } from '@/types'
 import { Dialog, Transition } from '@headlessui/react'
 import clsx from 'clsx'
 import { Search } from 'lucide-react'
-import { Fragment, useEffect, useRef, useState } from 'react'
-import { usePosts } from '@/contexts'
+import { Fragment, useEffect, useMemo, useRef, useState } from 'react'
+import { usePosts, useProjects } from '@/contexts'
 import { SearchButtonDialogResults } from './partials'
 import { getFilteredSearchResults } from './helpers'
 import type { SearchButtonDialogProps } from '.'
+import { formatIntoSearchableItem } from './formatters'
 
 const activeCategory = {
   Posts: true,
@@ -17,7 +18,7 @@ const activeCategory = {
 type SearchInitialState = {
   isActive: typeof activeCategory
   searchCategory: keyof typeof activeCategory
-  searchResult: Post[]
+  searchResult: SearchableItem[]
   searchQuery: string
 }
 
@@ -36,6 +37,12 @@ export const SearchButtonDialog = ({
   const customInset = `${headerHeight}px 0 0 0`
 
   const posts = usePosts()
+  const projects = useProjects()
+  /** @todo For some reason this doesn't work without using `useMemo` and instead it generates an infinite loop. Try to understand why */
+  const content = useMemo(
+    () => formatIntoSearchableItem([...posts, ...projects]),
+    [posts, projects],
+  )
 
   let [searchState, setSearchState] = useState(searchInitialState)
 
@@ -55,7 +62,7 @@ export const SearchButtonDialog = ({
 
   useEffect(() => {
     const queryResults = getFilteredSearchResults(
-      posts,
+      content,
       searchCategory,
       searchQuery,
     )
@@ -63,7 +70,7 @@ export const SearchButtonDialog = ({
       ...prevState,
       searchResult: queryResults,
     }))
-  }, [searchQuery, searchCategory, posts])
+  }, [content, searchCategory, searchQuery])
 
   const onButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()

@@ -17,6 +17,7 @@ export const postsFormatter = (frontmatter: Frontmatter): Post => {
     tags: [...tags.split(', ')],
     excerpt,
     slug: createSlugByTitle(title),
+    type: 'post',
   }
 
   const result = postSchema.safeParse(post)
