@@ -20,7 +20,7 @@ export default async function MainLayout({
           </NavigationProvider>
         </PostsProvider>
       </ProjectsProvider>
-      <main className='grid py-8 px-4'>{children}</main>
+      <main className='py-8 px-4'>{children}</main>
       <Footer />
     </>
   )

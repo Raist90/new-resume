@@ -1,19 +1,72 @@
 ---
-title: "Type and parse your environment variables with Zod"
-date: "2023-03-19"
-tags: "coding, next, typescript, zod"
-excerpt: "I wanted to write a few words about how this website is made and why I chose to do it this way."
-cover: "/how-this-website-is-made.jpeg"
-alt: "Code on a screen"
+title: 'Type and parse your environment variables with Zod'
+date: '2023-03-19'
+tags: 'coding, next, typescript, zod'
+excerpt: 'If you ever worked with environment variables in a TypeScript project, you probably know that it can be a bit of a pain to handle them.'
+cover: '/type-and-parse-your-environment-variables-with-zod.jpeg'
+alt: 'Code on a screen'
 ---
+
 If you ever worked with environment variables in a TypeScript project, you probably know that it can be a bit of a pain to handle them.
 
 How many times you had to write something like this?
 
 ```typescript
-const PORT = process.env.PORT as string;
+const PORT = process.env.PORT as string
 ```
 
-Every time you access an environment variable, you have to cast it to the correct type. This is not only error-prone but also makes your code harder to read and maintain, especially when having lot of environment variables.
+Every time you access an environment variable, you have to cast it to the correct type. This is not only **error-prone** but *it also makes your code harder to read and maintain*, especially when having lot of environment variables.
 
-This is where Zod comes in. Zod is a TypeScript-first schema declaration and validation library. It allows you to define the types for your environment variables and parse them from the environment in a single step. Let's see how it works.
+But this is not the only reason why environment variables can be annoying. You also have to make sure that they are set correctly. If you forget to set an environment variable, your application will crash. It's really important to validate all of your environment variables *before* using them.
+
+This is where **Zod** comes in. Zod is a *TypeScript-first schema declaration and validation library*. Among other things, it allows you to define the types for your environment variables and parse them from the environment in a few steps. Let's see how it works.
+
+### Create your ENV schema
+
+You can start by installing Zod with `npm install zod` and creating a new file called `env.ts` inside the root of your project. This file will essentially contain the schema for your environment variables.
+
+Insdie `env.ts`, you can define your schema like this:
+
+```typescript
+import { z } from 'zod'
+
+const envClientSchema = zod.object({
+  APP_URL: zod.string().url(),
+  NEXT_PUBLIC_SANITY_PROJECT_ID: zod.string(),
+  NEXT_PUBLIC_SANITY_DATASET: zod.string(),
+  NEXT_PUBLIC_SANITY_API_VERSION: zod.string(),
+})
+```
+
+You can differentiate client and server environment variables by creating two different schemas. In this case, we have `envClientSchema` for the client and `envServerSchema` for the server.
+
+Once you've done that, you can parse the environment variables by using Zod `parse` method:
+
+```typescript
+const parsedEnvClientSchema = envClientSchema.parse({
+  APP_URL: process.env.APP_URL,
+  NEXT_PUBLIC_SANITY_PROJECT_ID: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  NEXT_PUBLIC_SANITY_DATASET: process.env.NEXT_PUBLIC_SANITY_DATASET,
+  NEXT_PUBLIC_SANITY_API_VERSION: process.env.NEXT_PUBLIC_SANITY_API_VERSION,
+})
+```
+
+This will throw an error if any of the environment variables are missing or don't match the schema.
+
+Once you've parsed the environment variables you can export your schema:
+
+```typescript
+export const ENV = parsedEnvClientSchema
+```
+
+Finally, you can use your environment variables in the application like this:
+
+```typescript
+import { ENV } from '@/env'
+
+const url = ENV.APP_URL
+```
+
+A couple of things to note:
+- now you get autocomplete suggestions when using the `ENV` object
+- type of `url` is correctly inferred as `string`

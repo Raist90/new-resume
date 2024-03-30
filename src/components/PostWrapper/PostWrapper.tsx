@@ -26,7 +26,7 @@ export const PostWrapper = ({
   return (
     <section
       aria-labelledby={titleId}
-      className='w-full md:w-10/12 lg:w-1/2 mx-auto grid gap-4'
+      className='w-full md:w-10/12 lg:w-1/2 mx-auto block'
     >
       <HeadingWithImage
         id={titleId}
