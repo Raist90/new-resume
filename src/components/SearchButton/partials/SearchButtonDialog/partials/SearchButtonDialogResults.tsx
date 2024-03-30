@@ -25,7 +25,7 @@ export const SearchButtonDialogResults = ({
   }
 
   return (
-    <div className='grid gap-2'>
+    <div className='grid gap-2 max-h-[460px] overflow-y-auto'>
       {items.map((item) => {
         const { cover, excerpt, slug, title, type } = item
         return (
