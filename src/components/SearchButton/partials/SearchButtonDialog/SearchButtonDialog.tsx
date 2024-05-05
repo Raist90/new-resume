@@ -52,7 +52,7 @@ export const SearchButtonDialog = ({
   const searchDialogButtonList = [
     { active: isActive['Posts'], label: 'Posts' },
     { active: isActive['Tags'], label: 'Tags' },
-    { active: isActive['Projects'], label: 'Projects' },
+    // { active: isActive['Projects'], label: 'Projects' },
   ]
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
